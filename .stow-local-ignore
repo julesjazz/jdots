@@ -1,0 +1,64 @@
+^/notes
+^/scripts/brewlist*
+\.DS_Store
+
+# ------------------------------------------------------ #
+# Comments and blank lines are allowed.
+# stow default ignores, here for reference
+
+RCS
+.+,v
+
+CVS
+\.\#.+       # CVS conflict files / emacs lock files
+\.cvsignore
+
+\.svn
+_darcs
+\.hg
+
+\.git
+\.gitignore
+\.gitmodules
+
+.+~          # emacs backup files
+\#.*\#       # emacs autosave files
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+
+# Config-specific ignores
+^/config/.*\.log$
+^/config/.*/cache/
+^/config/.*/logs/
+^/config/.*/temp/
+^/config/.*/tmp/
+^/config/.*/sessions/
+^/config/.*/undo/
+^/config/.*/swap/
+^/config/.*/backup/
+^/config/.*/spell/
+^/config/.*/netrwhist
+^/config/.*/\.history
+^/config/.*/\.zcompdump
+^/config/.*/\.zsh_history
+
+# Stow package ignores
+^/stow-packages/.*/\.zcompdump
+^/stow-packages/.*/\.zcompdump\..*
+^/stow-packages/.*/\.zsh_history
+^/stow-packages/.*/fish_variables
+^/stow-packages/.*/\.history
+^/stow-packages/.*/\.history\.backup
+^/stow-packages/.*/history$
+^/stow-packages/.*/\.bashrc\.backup
+^/stow-packages/.*/lazyvim\.json
+^/stow-packages/.*/\.neoconf\.json
+^/stow-packages/.*/\.gitignore
+^/stow-packages/.*/LICENSE
+^/stow-packages/.*/README\.md
+^/stow-packages/.*/themes/
+^/stow-packages/.*/completions/
+^/stow-packages/.*/AppSupport/
+^/stow-packages/.*/sockets/

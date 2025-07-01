@@ -1,0 +1,86 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.config/zsh/.oh-my-zsh"
+# Set zsh config directory
+export ZDOTDIR="$HOME/.config/zsh"
+# custom path
+ZSH_CUSTOM="$HOME/.config/zsh/custom"
+
+# Performance optimizations
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+  compdump
+else
+  compinit -C
+fi
+
+# History Configuration
+HISTFILE=~/.config/.history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY # Share history between all sessions
+setopt INC_APPEND_HISTORY # Append to history file immediately
+setopt HIST_IGNORE_ALL_DUPS # Remove older duplicate entries from history
+setopt HIST_SAVE_NO_DUPS # Don't write duplicate entries in the history file
+setopt HIST_IGNORE_SPACE # Don't store commands starting with space
+setopt HIST_REDUCE_BLANKS # Remove superfluous blanks from history
+setopt HIST_VERIFY # Don't execute commands immediately when using history expansion
+setopt EXTENDED_HISTORY # Add timestamps to history
+# Custom history filtering for failed commands
+zshaddhistory() {
+  # Don't add to history if command failed (exit code != 0)
+  if [[ $? -ne 0 ]]; then
+    return 1
+  fi
+  return 0
+}
+
+# OMZ Config - Performance optimizations
+DISABLE_MAGIC_FUNCTIONS="true" # Disable magic functions (can be slow)
+DISABLE_LS_COLORS="true" # Disable ls colors if you use exa/lsd
+DISABLE_AUTO_TITLE="true" # Disable auto-setting terminal title
+DISABLE_UNTRACKED_FILES_DIRTY="true" # Disable untracked files being marked as dirty for speed
+
+# Disable auto-updates for better performance
+zstyle ':omz:update' mode disabled
+
+# Load plugins conditionally for better performance
+plugins=(
+    git
+    aws
+    python
+    z
+    fzf
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    brew
+    nmap
+    docker
+    kubectl
+    terraform
+    )
+source $ZSH/oh-my-zsh.sh
+
+# Lazy load aliases only when needed
+alias_loader() {
+  if [[ -f ~/.config/aliases ]]; then
+    source ~/.config/aliases
+  elif [[ -f ~/.aliases ]]; then
+    source ~/.aliases
+  fi
+  unset -f alias_loader
+}
+# Only load aliases when a command is not found
+# command_not_found_handler() {
+#   alias_loader
+#   return 127
+# }
+# Lazy load starship for better startup performance
+if [[ -z $STARSHIP_SHELL ]]; then
+  eval "$(starship init zsh --print-full-init)"
+fi
+# Starship prompt
+eval "$(starship init zsh)"

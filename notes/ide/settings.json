@@ -1,0 +1,47 @@
+// cmd+shift+p settings.json
+{
+    "makefile.configureOnOpen": true,
+    "editor.fontFamily": "'CaskaydiaCove Nerd Font Mono', Menlo, Monaco, 'Courier New', monospace",
+    "terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font Mono'",
+    "terminal.integrated.fontSize": 13,
+    "redhat.telemetry.enabled": false,
+    "window.newWindowProfile": "Default",
+    "editor.minimap.enabled": false,
+    "editor.fontSize": 13,
+    "workbench.iconTheme": "vscode-great-icons",
+    "vs-kubernetes": {
+        "vscode-kubernetes.helm-path-mac": "/Users/juliasilver/.vs-kubernetes/tools/helm/darwin-arm64/helm",
+        "vscode-kubernetes.minikube-path-mac": "/Users/juliasilver/.vs-kubernetes/tools/minikube/darwin-arm64/minikube"
+    },
+    "security.promptForLocalFileProtocolHandling": false,
+    "workbench.startupEditor": "none",
+    "keyboard.touchbar.enabled": false,
+    "window.zoomLevel": 0.5227586988632231,
+    "editor.linkedEditing": true,
+    "mssql.connectionGroups": [
+        {
+            "name": "ROOT",
+            "id": "631142E4-D7AE-4597-9AD1-426AD333E1FA"
+        }
+    ],
+    "mssql.connections": [
+        {
+            "authenticationType": "SqlLogin",
+            "connectTimeout": 30,
+            "applicationName": "vscode-mssql",
+            "profileName": "[REDACTED]",
+            "server": "[REDACTED]",
+            "trustServerCertificate": true,
+            "user": "[REDACTED]",
+            "password": "",
+            "savePassword": true,
+            "groupId": "[REDACTED]",
+            "id": "[REDACTED]"
+        }
+    ],
+    "sqldeveloper.sqlHistory.historyLimit": 500,
+    "mssql.enableQueryHistoryCapture": true,
+    "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+    "git.autofetch": true,
+    "security.workspace.trust.untrustedFiles": "open"
+}

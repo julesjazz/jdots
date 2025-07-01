@@ -1,0 +1,26 @@
+# GHOSTTY ----------------------------
+# Default config: /Users/juliasilver/Library/Application Support/com.mitchellh.ghostty/config
+# Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Some commands:
+# ghostty +show-config --default --docs
+# https://ghostty.org/docs/config/reference
+#
+# === Font Configuration ===
+# ghostty +list-fonts
+font-family = "CaskaydiaMono"
+font-size = 14
+# String: Font name or empty to reset
+font-thicken = true
+font-thicken-strength = 20
+# ghostty +list-themes
+theme = "Github-Dark-Default"
+# String: Theme name or path, or "light:theme,dark:theme"
+
+clipboard-read = "allow"
+# Values: "ask", "allow", "deny"
+clipboard-write = "allow"
+# Values: "ask", "allow", "deny"
+
+window-height = 45
+window-width = 200

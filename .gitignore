@@ -1,0 +1,10 @@
+*/brewlist*
+.DS_Store
+
+# History files
+.config/.history
+.config/.zsh_history
+.config/.bash_history
+
+# Sensitive config files
+.config/octopus/cli_config.json
