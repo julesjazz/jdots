@@ -1,10 +1,121 @@
-*/brewlist*
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# History files
-.config/.history
-.config/.zsh_history
-.config/.bash_history
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Sensitive config files
-.config/octopus/cli_config.json
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Cache directories
+.cache/
+*.cache
+
+# Node.js (if any)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if any)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Ruby (if any)
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+# Go (if any)
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+
+# Rust (if any)
+/target/
+Cargo.lock
+
+# Java (if any)
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+# Sensitive files (already excluded but good to have here)
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.csr
+*.pem
+*.p12
+*.pfx
+*.crt
+*.csr
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# History files (security)
+.history
+.zsh_history
+.bash_history
+.fish_history
+.powershell_history
+
+# Octopus CLI config (contains API keys)
+octopus/
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Stow temporary files
+.stow-local-ignore~
+
+# Local overrides
+.local/
+local/
+
+# System specific
+*.orig
+*.rej

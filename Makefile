@@ -21,7 +21,10 @@ help:
 	@echo "  brewclean-dry  - Homebrew cleanup (dry run - show what would be cleaned)"
 	@echo "  brewupdate     - Update and upgrade Homebrew packages"
 	@echo "  brewdoctor     - Run Homebrew doctor to check for issues"
-	@echo "  maintenance    - Full system maintenance (brew cleanup + stow backup)"
+	@echo "  security-audit - Run security audit on repository"
+	@echo "  health-check   - Run health check on dotfiles setup"
+	@echo "  verify-backup  - Verify backup integrity and completeness"
+	@echo "  maintenance    - Full system maintenance (security + brew cleanup + stow backup)"
 	@echo ""
 	@echo "  help           - Show this help message"
 	@echo ""
@@ -139,7 +142,25 @@ brewdoctor:
 	@echo "🔧 Running Homebrew doctor..."
 	@brew doctor
 
-# Full system maintenance (brew cleanup + stow backup)
-maintenance: brewclean stow-backup
+# Security audit
+security-audit:
+	@echo "🔒 Running security audit..."
+	@chmod +x scripts/security-audit.sh
+	@./scripts/security-audit.sh
+
+# Health check
+health-check:
+	@echo "🏥 Running health check..."
+	@chmod +x scripts/health-check.sh
+	@./scripts/health-check.sh
+
+# Backup verification
+verify-backup:
+	@echo "🔍 Verifying backup integrity..."
+	@chmod +x scripts/verify-backup.sh
+	@./scripts/verify-backup.sh
+
+# Full system maintenance (security audit + brew cleanup + stow backup)
+maintenance: security-audit brewclean stow-backup
 	@echo "✅ System maintenance completed!"
-	@echo "Homebrew cleaned and .config files backed up." 
+	@echo "Security audit passed, Homebrew cleaned, and .config files backed up." 

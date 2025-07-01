@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
+# zmodload zsh/zprof
 # Set zsh config directory
 export ZDOTDIR="$HOME/.config/zsh"
 
@@ -77,3 +77,4 @@ if [[ -z $STARSHIP_SHELL ]]; then
 fi
 # Starship prompt
 eval "$(starship init zsh)"
+# zprof

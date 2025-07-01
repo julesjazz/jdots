@@ -1,3 +1,153 @@
+# Brew Cleanup - Tue Jul  1 16:36:24 MDT 2025
+
+## Added Formulas
+- bat
+- fd
+- fish
+- fisher
+- libgit2
+- libssh2
+- nushell
+- oh-my-posh
+- oniguruma
+- ripgrep
+- stow
+- zoxide
+
+## Added Casks
+- discord
+- font-comic-shanns-mono-nerd-font
+- openlens
+- warp
+- wezterm
+
+---
+
+# Brew Cleanup - Tue Jul  1 16:25:26 MDT 2025
+
+## Added Formulas
+- bat
+- fd
+- fish
+- fisher
+- libgit2
+- libssh2
+- nushell
+- oh-my-posh
+- oniguruma
+- ripgrep
+- stow
+- zoxide
+
+## Added Casks
+- discord
+- font-comic-shanns-mono-nerd-font
+- openlens
+- warp
+- wezterm
+
+---
+
+# Brew Cleanup - Tue Jul  1 16:24:50 MDT 2025
+
+## Added Formulas
+- bat
+- fd
+- fish
+- fisher
+- libgit2
+- libssh2
+- nushell
+- oh-my-posh
+- oniguruma
+- ripgrep
+- stow
+- zoxide
+
+## Added Casks
+- discord
+- font-comic-shanns-mono-nerd-font
+- openlens
+- warp
+- wezterm
+
+---
+
+# Brew Cleanup - Tue Jul  1 16:24:17 MDT 2025
+
+## Added Formulas
+- bat
+- fd
+- fish
+- fisher
+- libgit2
+- libssh2
+- nushell
+- oh-my-posh
+- oniguruma
+- ripgrep
+- stow
+- zoxide
+
+## Added Casks
+- discord
+- font-comic-shanns-mono-nerd-font
+- openlens
+- warp
+- wezterm
+
+---
+
+# Brew Cleanup - Tue Jul  1 16:23:17 MDT 2025
+
+## Added Formulas
+- bat
+- fd
+- fish
+- fisher
+- libgit2
+- libssh2
+- nushell
+- oh-my-posh
+- oniguruma
+- ripgrep
+- stow
+- zoxide
+
+## Added Casks
+- discord
+- font-comic-shanns-mono-nerd-font
+- openlens
+- warp
+- wezterm
+
+---
+
+# Brew Cleanup - Tue Jul  1 16:11:30 MDT 2025
+
+## Added Formulas
+- bat
+- fd
+- fish
+- fisher
+- libgit2
+- libssh2
+- nushell
+- oh-my-posh
+- oniguruma
+- ripgrep
+- stow
+- zoxide
+
+## Added Casks
+- discord
+- font-comic-shanns-mono-nerd-font
+- openlens
+- warp
+- wezterm
+
+---
+
 # Brew Cleanup - Fri Jun 27 09:16:25 MDT 2025
 
 ## Added Formulas

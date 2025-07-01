@@ -60,9 +60,16 @@ copy_config() {
         "zsh")
             # Copy zsh config files to .config
             cp "$source_dir/.zshrc" "$config_target_dir/" 2>/dev/null || log_warning "No .zshrc found in config"
-            # Also copy plugins directory if it exists
+            # Also copy plugins directory if it exists, excluding git directories
             if [[ -d "$source_dir/plugins" ]]; then
-                cp -r "$source_dir/plugins" "$config_target_dir/"
+                # Use rsync to exclude git directories and other unwanted files
+                if command -v rsync >/dev/null 2>&1; then
+                    rsync -av --exclude='.git' --exclude='*.log' --exclude='*.tmp' --exclude='*.cache' "$source_dir/plugins/" "$config_target_dir/plugins/"
+                else
+                    # Fallback to cp with find to exclude git directories
+                    find "$source_dir/plugins" -type d -name ".git" -exec rm -rf {} + 2>/dev/null || true
+                    cp -r "$source_dir/plugins" "$config_target_dir/"
+                fi
             fi
             # Note: history file is excluded for privacy/security reasons
             # Copy home directory .zshrc
