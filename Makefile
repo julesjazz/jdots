@@ -16,8 +16,17 @@ help:
 	@echo "  stow-status    - Show status of stow packages"
 	@echo "  stow-install-deps - Install dependencies for dotfiles"
 	@echo ""
+	@echo "New Computer Setup:"
+	@echo "  setup-new        - Complete setup for new computer (brew + stow)"
+	@echo ""
 	@echo "System Maintenance:"
 	@echo "  brewclean      - Comprehensive Homebrew cleanup and maintenance"
+	@echo "  brew-install   - Install brew packages from brewlist.txt"
+	@echo "  brew-sync-to-master   - Sync computer brew list to master"
+	@echo "  brew-sync-from-master - Sync master brew list to computer"
+	@echo "  brew-sync-diff        - Show differences between brew lists"
+	@echo "  brew-sync-list        - List available brew list files"
+	@echo "  brew-rename           - Rename brewlist files to match hostname format"
 	@echo "  brewclean-dry  - Homebrew cleanup (dry run - show what would be cleaned)"
 	@echo "  brewupdate     - Update and upgrade Homebrew packages"
 	@echo "  brewdoctor     - Run Homebrew doctor to check for issues"
@@ -125,6 +134,45 @@ brewclean:
 	@echo "🧹 Starting Homebrew cleanup..."
 	@chmod +x scripts/brewclean/brewclean.sh
 	@./scripts/brewclean/brewclean.sh
+
+# Install brew packages from brewlist.txt
+brew-install:
+	@echo "🍺 Installing brew packages from brewlist.txt..."
+	@chmod +x scripts/brewclean/install-brew-packages.sh
+	@./scripts/brewclean/install-brew-packages.sh
+
+# Sync brew lists
+brew-sync-to-master:
+	@echo "🔄 Syncing computer brew list to master..."
+	@chmod +x scripts/brewclean/sync-brew-lists.sh
+	@./scripts/brewclean/sync-brew-lists.sh to-master
+
+brew-sync-from-master:
+	@echo "🔄 Syncing master brew list to computer..."
+	@chmod +x scripts/brewclean/sync-brew-lists.sh
+	@./scripts/brewclean/sync-brew-lists.sh from-master
+
+brew-sync-diff:
+	@echo "📊 Showing differences between brew lists..."
+	@chmod +x scripts/brewclean/sync-brew-lists.sh
+	@./scripts/brewclean/sync-brew-lists.sh diff
+
+brew-sync-list:
+	@echo "📋 Listing available brew list files..."
+	@chmod +x scripts/brewclean/sync-brew-lists.sh
+	@./scripts/brewclean/sync-brew-lists.sh list
+
+# Rename brewlist files to match new hostname format
+brew-rename:
+	@echo "🔄 Renaming brewlist files to match hostname format..."
+	@chmod +x scripts/brewclean/rename-brewlist.sh
+	@./scripts/brewclean/rename-brewlist.sh
+
+# Setup jdots on a new computer
+setup-new:
+	@echo "🚀 Setting up jdots on new computer..."
+	@chmod +x scripts/setup-new-computer.sh
+	@./scripts/setup-new-computer.sh
 
 # Homebrew cleanup (dry run - show what would be cleaned)
 brewclean-dry:

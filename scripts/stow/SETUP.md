@@ -16,7 +16,20 @@ git clone <your-repo-url> ~/jdots
 cd ~/jdots
 ```
 
-### 2. Install dependencies
+### 2. Complete setup (Recommended)
+```bash
+make setup-new
+```
+
+This will automatically:
+- Install Homebrew if not already installed
+- Install all brew formulas and casks from `brewlist.txt`
+- Install required shells and development tools
+- Set up your dotfiles with GNU Stow
+- Configure shell settings
+
+### 3. Alternative: Manual setup
+If you prefer to install packages manually:
 ```bash
 make stow-install-deps
 ```
@@ -155,6 +168,9 @@ make maintenance
 
 # Just Homebrew cleanup
 make brewclean
+
+# Install missing brew packages from brewlist.txt
+make brew-install
 
 # Just stow backup
 make stow-backup

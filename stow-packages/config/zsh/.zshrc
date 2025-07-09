@@ -4,6 +4,9 @@
 # Set zsh config directory
 export ZDOTDIR="$HOME/.config/zsh"
 
+# Homebrew PATH setup
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Performance optimizations
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then

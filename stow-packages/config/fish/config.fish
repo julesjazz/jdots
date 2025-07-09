@@ -5,7 +5,8 @@ end
 # Fish uses its own history format for better integration
 # History is stored in ~/.local/share/fish/fish_history
 
-
+# Homebrew PATH setup
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Homebrew FISH
 fish_add_path "/opt/homebrew/bin/"

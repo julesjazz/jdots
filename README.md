@@ -2,6 +2,12 @@
 
 A comprehensive dotfiles repository managed with GNU Stow for consistent development environments across machines.
 
+> I, a human (I think), am writing this one callout...  
+> This is my attempt at vibe-coding my own methods for dotfiles and package managers.  
+> DO NOT just blindly run anything here.  
+> DO NOT just blindly trust anything here.  
+> But some of these tools and methods you might find handy.  
+
 ## 🚀 Quick Start
 
 ### Prerequisites

@@ -8,6 +8,9 @@ case $- in
       *) return;;
 esac
 
+# Homebrew PATH setup
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # XDG Base Directory specification
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
