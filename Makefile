@@ -27,6 +27,17 @@ help:
 	@echo "  brew-sync-diff        - Show differences between brew lists"
 	@echo "  brew-sync-list        - List available brew list files"
 	@echo "  brew-rename           - Rename brewlist files to match hostname format"
+	@echo ""
+	@echo "IDE Backups:"
+	@echo "  vscode-backup         - Create VS Code settings backup"
+	@echo "  vscode-backup-list    - List VS Code backups"
+	@echo "  vscode-backup-clean   - Clean old VS Code backups"
+	@echo "  vscode-backup-info    - Show VS Code backup info"
+	@echo "  cursor-backup         - Create Cursor settings backup"
+	@echo "  cursor-backup-list    - List Cursor backups"
+	@echo "  cursor-backup-clean   - Clean old Cursor backups"
+	@echo "  cursor-backup-info    - Show Cursor backup info"
+	@echo ""
 	@echo "  brewclean-dry  - Homebrew cleanup (dry run - show what would be cleaned)"
 	@echo "  brewupdate     - Update and upgrade Homebrew packages"
 	@echo "  brewdoctor     - Run Homebrew doctor to check for issues"
@@ -167,6 +178,48 @@ brew-rename:
 	@echo "🔄 Renaming brewlist files to match hostname format..."
 	@chmod +x scripts/brewclean/rename-brewlist.sh
 	@./scripts/brewclean/rename-brewlist.sh
+
+# VS Code settings backup
+vscode-backup:
+	@echo "📁 Creating VS Code settings backup..."
+	@chmod +x scripts/IDEs/backup-vscode.sh
+	@./scripts/IDEs/backup-vscode.sh backup
+
+vscode-backup-list:
+	@echo "📋 Listing VS Code backups..."
+	@chmod +x scripts/IDEs/backup-vscode.sh
+	@./scripts/IDEs/backup-vscode.sh list
+
+vscode-backup-clean:
+	@echo "🧹 Cleaning old VS Code backups..."
+	@chmod +x scripts/IDEs/backup-vscode.sh
+	@./scripts/IDEs/backup-vscode.sh clean
+
+vscode-backup-info:
+	@echo "ℹ️  Showing VS Code backup info..."
+	@chmod +x scripts/IDEs/backup-vscode.sh
+	@./scripts/IDEs/backup-vscode.sh info
+
+# Cursor IDE settings backup
+cursor-backup:
+	@echo "📁 Creating Cursor settings backup..."
+	@chmod +x scripts/IDEs/backup-cursor.sh
+	@./scripts/IDEs/backup-cursor.sh backup
+
+cursor-backup-list:
+	@echo "📋 Listing Cursor backups..."
+	@chmod +x scripts/IDEs/backup-cursor.sh
+	@./scripts/IDEs/backup-cursor.sh list
+
+cursor-backup-clean:
+	@echo "🧹 Cleaning old Cursor backups..."
+	@chmod +x scripts/IDEs/backup-cursor.sh
+	@./scripts/IDEs/backup-cursor.sh clean
+
+cursor-backup-info:
+	@echo "ℹ️  Showing Cursor backup info..."
+	@chmod +x scripts/IDEs/backup-cursor.sh
+	@./scripts/IDEs/backup-cursor.sh info
 
 # Setup jdots on a new computer
 setup-new:

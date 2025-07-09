@@ -1,0 +1,16 @@
+{
+    "editor.fontFamily": "CaskaydiaCove NFM",
+    "terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font Mono'",
+    "terminal.integrated.fontSize": 13,
+    "window.newWindowProfile": "Default",
+    "editor.minimap.enabled": false,
+    "editor.fontSize": 13,
+    "workbench.iconTheme": "vscode-icons",
+    "security.promptForLocalFileProtocolHandling": false,
+    "workbench.startupEditor": "none",
+    "keyboard.touchbar.enabled": false,
+    "window.zoomLevel": 0.5227586988632231,
+    "editor.linkedEditing": true,
+    "git.autofetch": true,
+    "security.workspace.trust.untrustedFiles": "open"
+}
