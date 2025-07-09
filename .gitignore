@@ -110,7 +110,7 @@ octopus/
 *.old
 
 # Stow temporary files
-.stow-local-ignore~
+# .stow-local-ignore~
 
 # Local overrides
 .local/
