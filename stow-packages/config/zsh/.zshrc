@@ -9,12 +9,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Performance optimizations
 autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-  compdump
-else
-  compinit -C
-fi
+compinit
 
 # History Configuration
 HISTFILE=~/.config/.history
@@ -54,13 +49,48 @@ load_plugin() {
   fi
 }
 
-# Load plugins
+# Load plugins (syntax highlighting must be loaded last)
 load_plugin ~/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-load_plugin ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-load_plugin ~/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+load_plugin ~/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 load_plugin ~/.config/zsh/plugins/z/z.sh
-load_plugin ~/.config/zsh/plugins/fd/fd.plugin.zsh
 load_plugin ~/.config/zsh/plugins/forgit/forgit.plugin.zsh
+load_plugin ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
+# Configure zsh-autocomplete
+if [[ -f ~/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
+  # Enable autocomplete
+  zstyle ':autocomplete:*' default-context ''
+  zstyle ':autocomplete:*' min-input 1
+  zstyle ':autocomplete:*' list-lines 16
+  zstyle ':autocomplete:*' max-lines 16
+  zstyle ':autocomplete:*' menu select
+  zstyle ':autocomplete:*' select-prompt '2%p'
+  zstyle ':autocomplete:*' fzf-completion yes
+fi
+
+# Configure zsh-syntax-highlighting
+if [[ -f ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]]; then
+  # Must be loaded last for proper highlighting
+  # This is already loaded above, but we'll ensure it's configured properly
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+  ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
+fi
+
+# Configure zsh-history-substring-search
+if [[ -f ~/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh ]]; then
+  # Bind up and down arrow keys
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+  bindkey '^P' history-substring-search-up
+  bindkey '^N' history-substring-search-down
+fi
+
+# Configure z (smart directory jumping)
+if [[ -f ~/.config/zsh/plugins/z/z.sh ]]; then
+  # z configuration
+  export _Z_DATA="$HOME/.config/.z"
+  export _Z_NO_RESOLVE_SYMLINKS=1
+fi
 
 # FZF configuration (built-in)
 if command -v fzf >/dev/null 2>&1; then
