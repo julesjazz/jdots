@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-# zmodload zsh/zprof # Uncomment this to enable profiling
+# zmodload zsh/zprof
 # Set zsh config directory
 export ZDOTDIR="$HOME/.config/zsh"
 
@@ -66,8 +66,10 @@ load_plugin ~/.config/zsh/plugins/forgit/forgit.plugin.zsh
 if command -v fzf >/dev/null 2>&1; then
   # Auto-completion
   [[ $- == *i* ]] && source "$(brew --prefix)/opt/fzf/shell/completion.zsh" 2> /dev/null
+
   # Key bindings
   source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh" 2> /dev/null
+
   # FZF configuration
   export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 fi
@@ -78,5 +80,4 @@ if [[ -z $STARSHIP_SHELL ]]; then
 fi
 # Starship prompt
 eval "$(starship init zsh)"
-
-# zprof # Uncomment this to enable profiling
+# zprof

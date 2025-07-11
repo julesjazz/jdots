@@ -264,4 +264,16 @@ verify-backup:
 # Full system maintenance (security audit + brew cleanup + stow backup)
 maintenance: security-audit brewclean stow-backup
 	@echo "✅ System maintenance completed!"
-	@echo "Security audit passed, Homebrew cleaned, and .config files backed up." 
+	@echo "Security audit passed, Homebrew cleaned, and .config files backed up."
+	@echo ""
+	@echo "📝 Would you like to commit and push these changes to git? (y/N)"
+	@read -p "Enter your choice: " choice; \
+	if [ "$$choice" = "y" ] || [ "$$choice" = "Y" ]; then \
+		echo "🔄 Committing and pushing changes..."; \
+		git add .; \
+		git commit -m "System maintenance: security audit, brew cleanup, and config backup"; \
+		git push; \
+		echo "✅ Changes committed and pushed successfully!"; \
+	else \
+		echo "⏭️  Skipping git update. You can commit manually later."; \
+	fi 
