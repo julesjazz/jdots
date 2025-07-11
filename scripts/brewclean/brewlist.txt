@@ -1,3 +1,67 @@
+# Brew Cleanup - Fri Jul 11 11:13:04 MDT 2025
+## Master List
+
+## Added Formulas
+- bat
+- fd
+- fish
+- fisher
+- libgit2
+- libssh2
+- nushell
+- oh-my-posh
+- oniguruma
+- ripgrep
+- stow
+- zoxide
+- zsh-autosuggestions
+
+## Removed Formulas
+- cffi
+- cryptography
+- pycparser
+
+## Added Casks
+- discord
+- font-comic-shanns-mono-nerd-font
+- openlens
+- warp
+- wezterm
+
+---
+
+# Brew Cleanup - Fri Jul 11 11:03:31 MDT 2025
+## Master List
+
+## Added Formulas
+- bat
+- fd
+- fish
+- fisher
+- libgit2
+- libssh2
+- nushell
+- oh-my-posh
+- oniguruma
+- ripgrep
+- stow
+- zoxide
+- zsh-autosuggestions
+
+## Removed Formulas
+- cffi
+- cryptography
+- pycparser
+
+## Added Casks
+- discord
+- font-comic-shanns-mono-nerd-font
+- openlens
+- warp
+- wezterm
+
+---
+
 # Brew Cleanup - Fri Jul 11 10:51:11 MDT 2025
 ## Master List
 
