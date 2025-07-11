@@ -7,6 +7,11 @@ export ZDOTDIR="$HOME/.config/zsh"
 # Homebrew PATH setup
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# ASDF version manager setup
+. "$HOME/.asdf/asdf.sh"
+# Add ASDF completions
+fpath=(${ASDF_DIR}/completions $fpath)
+
 # Performance optimizations
 autoload -Uz compinit
 compinit
@@ -111,3 +116,5 @@ fi
 # Starship prompt
 eval "$(starship init zsh)"
 # zprof
+
+export PATH="$HOME/.asdf/shims:$PATH"

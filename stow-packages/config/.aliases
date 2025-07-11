@@ -98,9 +98,9 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 
 # AWSCLI aliases
-alias aws='aws --output table'
-alias awsj='aws --output json'
-alias awsy='aws --output yaml'
+alias aws='$(asdf where awscli)/bin/aws --output table'
+alias awsj='$(asdf where awscli)/bin/aws --output json'
+alias awsy='$(asdf where awscli)/bin/aws --output yaml'
 alias aws-whoami='aws sts get-caller-identity'
 alias aws-regions='aws ec2 describe-regions --query "Regions[].RegionName" --output table'
 alias aws-instances='aws ec2 describe-instances --query "Reservations[].Instances[].{ID:InstanceId,Type:InstanceType,State:State.Name,IP:PublicIpAddress}" --output table'
