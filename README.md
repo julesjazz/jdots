@@ -163,6 +163,28 @@ make stow-deploy
 make maintenance
 ```
 
+### asdf Tool Version Management
+
+You can update all asdf-managed tools (Node.js, Python, Terraform) to the latest LTS/stable versions with:
+
+```bash
+make asdf-update-lts
+```
+
+This will:
+- Update asdf plugins
+- Install the latest LTS/stable versions of Node.js, Python, and Terraform
+- Set them as the global versions
+- Reshim asdf
+
+This is also included in the full maintenance workflow:
+
+```bash
+make maintenance
+```
+
+The script is located at `scripts/stow/update-asdf-lts.sh` and can be run directly if needed.
+
 ## 🐛 Troubleshooting
 
 ### Common Issues

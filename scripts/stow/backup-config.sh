@@ -108,6 +108,12 @@ copy_config() {
             cp "$source_dir/env.nu" "$config_target_dir/" 2>/dev/null || log_warning "No env.nu found"
             ;;
 
+        "asdf")
+            # Copy asdf config files from home directory
+            cp "$HOME/.asdfrc" "$config_target_dir/" 2>/dev/null || log_warning "No ~/.asdfrc found"
+            cp "$HOME/.tool-versions" "$config_target_dir/" 2>/dev/null || log_warning "No ~/.tool-versions found"
+            ;;
+
         *)
             log_warning "Unknown application: $app_name"
             return 1
@@ -136,7 +142,7 @@ main() {
     log_info "Starting .config backup to stow packages..."
     
     # Backup application-specific configs
-    local apps=("zsh" "nvim" "bash" "powershell" "gitlab" "ghostty" "nushell")
+    local apps=("zsh" "nvim" "bash" "powershell" "gitlab" "ghostty" "nushell" "asdf")
     
     for app in "${apps[@]}"; do
         copy_config "$app"

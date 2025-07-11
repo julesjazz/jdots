@@ -1,0 +1,14 @@
+# asdf configuration file
+# https://asdf-vm.com/guide/getting-started.html#_3-install-asdf
+
+# Set the default tool versions
+# These will be used when no .tool-versions file is present in the current directory
+
+# Python settings
+legacy_version_file = yes
+
+# Node.js settings
+nodejs_prefer_install_from_binary = yes
+
+# Terraform settings
+# No specific settings needed for terraform 

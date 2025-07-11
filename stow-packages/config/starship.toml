@@ -221,7 +221,6 @@ style = "bold yellow bg:#212736"
 disabled = false
 expiration_symbol = "X"
 force_display = false
-detect_env_vars = ["AWS_PROFILE", "AWS_DEFAULT_PROFILE", "AWS_REGION", "AWS_DEFAULT_REGION"]
 
 [aws.region_aliases]
 
@@ -232,7 +231,6 @@ format = 'on [$symbol$account(@$domain)(\($region\))]($style) '
 symbol = "☁️ "
 style = "bold blue bg:#212736"
 disabled = false
-detect_env_vars = ["CLOUDSDK_CONFIG", "CLOUDSDK_PROJECT", "CLOUDSDK_COMPUTE_REGION"]
 
 [gcloud.region_aliases]
 
@@ -243,7 +241,6 @@ format = "on [$symbol($subscription)]($style) "
 symbol = "☁️ "
 style = "blue bold bg:#212736"
 disabled = true
-detect_env_vars = ["AZURE_CONFIG_DIR", "AZURE_DEFAULT_SUBSCRIPTION"]
 
 [azure.subscription_aliases]
 

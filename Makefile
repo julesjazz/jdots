@@ -263,7 +263,11 @@ test-nushell-starship:
 	@chmod +x scripts/test-nushell-starship.sh
 	@./scripts/test-nushell-starship.sh
 
-
+# Update asdf tools to latest LTS/stable versions
+asdf-update-lts:
+	@echo "Updating asdf tools to latest LTS/stable versions..."
+	@chmod +x scripts/stow/update-asdf-lts.sh
+	@./scripts/stow/update-asdf-lts.sh
 
 # Backup verification
 verify-backup:
@@ -271,9 +275,9 @@ verify-backup:
 	@chmod +x scripts/verify-backup.sh
 	@./scripts/verify-backup.sh
 
-# Full system maintenance (security audit + brew cleanup + stow backup)
-maintenance: security-audit brewclean stow-backup
-	@echo "✅ System maintenance completed!"
+# Full system maintenance (security + brew cleanup + stow backup + asdf update)
+maintenance: security-audit brewclean stow-backup asdf-update-lts
+	@echo "System maintenance completed!"
 	@echo "Security audit passed, Homebrew cleaned, and .config files backed up."
 	@echo ""
 	@echo "📝 Would you like to commit and push these changes to git? (y/N)"

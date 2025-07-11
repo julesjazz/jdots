@@ -1,3 +1,19 @@
+# Brew Cleanup - Fri Jul 11 16:08:36 MDT 2025
+## Computer: fvmac
+
+## Added Formulas
+- asdf
+- git
+- zsh-autosuggestions
+
+## Removed Formulas
+- cffi
+- cryptography
+- pycparser
+- pyenv
+
+---
+
 # Brew Cleanup - Fri Jul 11 15:38:25 MDT 2025
 ## Computer: fvmac
 
