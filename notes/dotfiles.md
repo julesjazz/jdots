@@ -4,7 +4,7 @@
 - BASH https://www.gnu.org/software/bash/manual/bash.html
 - ZSH https://zsh.sourceforge.io/Doc/
 - Powershell https://learn.microsoft.com/en-us/powershell/
-- FISH https://fishshell.com/
+
 - NuShell https://www.nushell.sh/
 
 ## Systems Supported

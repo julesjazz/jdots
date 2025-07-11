@@ -22,8 +22,6 @@ docker
 docker-completion
 fd
 ffmpeg
-fish
-fisher
 flac
 fontconfig
 freerdp

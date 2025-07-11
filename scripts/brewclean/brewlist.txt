@@ -1,11 +1,39 @@
+# Brew Cleanup - Fri Jul 11 12:00:46 MDT 2025
+## Master List
+
+## Added Formulas
+- bat
+- fd
+- libgit2
+- libssh2
+- nushell
+- oh-my-posh
+- oniguruma
+- ripgrep
+- stow
+- zoxide
+- zsh-autosuggestions
+
+## Removed Formulas
+- cffi
+- cryptography
+- pycparser
+
+## Added Casks
+- discord
+- font-comic-shanns-mono-nerd-font
+- openlens
+- warp
+- wezterm
+
+---
+
 # Brew Cleanup - Fri Jul 11 11:13:04 MDT 2025
 ## Master List
 
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -36,8 +64,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -68,8 +94,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -100,8 +124,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -132,8 +154,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -158,8 +178,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -184,8 +202,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -209,8 +225,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -234,8 +248,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -432,8 +444,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -457,8 +467,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -482,8 +490,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -507,8 +513,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -532,8 +536,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -557,8 +559,6 @@
 ## Added Formulas
 - bat
 - fd
-- fish
-- fisher
 - libgit2
 - libssh2
 - nushell
@@ -580,8 +580,6 @@
 # Brew Cleanup - Fri Jun 27 09:16:25 MDT 2025
 
 ## Added Formulas
-- fish
-- fisher
 
 ---
 

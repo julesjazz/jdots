@@ -81,10 +81,10 @@ echo -e "\n${BLUE}2. Checking for expected configurations...${NC}"
 
 # Check for expected config directories in stow packages
 declare -a expected_configs=(
-    "config/zsh"
-    "config/bash"
-    "config/fish"
-    "config/nvim"
+          "config/zsh"
+      "config/bash"
+      "config/nushell"
+      "config/nvim"
     "config/git"
     "config/starship.toml"
     "home/.aliases"

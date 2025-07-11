@@ -80,7 +80,7 @@ make help             # Show all available commands
 
 ### Shells
 - **Zsh** - Primary shell with Oh My Zsh and custom plugins
-- **Fish** - Alternative shell with shared aliases
+- **Nu** - Modern shell with structured data support
 - **Bash** - Fallback shell configuration
 
 ### Development Tools

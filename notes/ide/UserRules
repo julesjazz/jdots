@@ -32,10 +32,9 @@ cursor_user_rules:
       - GitLab PATs: https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
 
     shells:
-    - use the primary shell in this order
+      - use the primary shell in this order
       - zsh
       - Bash
-      - fish
 
     environments:
       - Dev

@@ -1,3 +1,10 @@
+# Brew Cleanup - Fri Jul 11 12:00:46 MDT 2025
+## Computer: MBP165-004
+
+No changes detected since last run.
+
+---
+
 # Brew Cleanup - Fri Jul 11 11:13:04 MDT 2025
 ## Computer: MBP165-004
 
@@ -41,8 +48,6 @@ docker
 docker-completion
 fd
 ffmpeg
-fish
-fisher
 flac
 fontconfig
 freerdp

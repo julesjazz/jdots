@@ -69,10 +69,10 @@ for cmd in "${required_commands[@]}"; do
     fi
 done
 
-# Check for optional but recommended commands
-declare -a optional_commands=(
-    "fish"
-    "nvim"
+  # Check for optional but recommended commands
+  declare -a optional_commands=(
+      "nu"
+      "nvim"
     "fzf"
     "fd"
     "rg"

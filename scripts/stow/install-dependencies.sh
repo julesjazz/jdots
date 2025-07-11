@@ -104,13 +104,7 @@ install_shell_deps() {
         install_packages "$pkg_manager" zsh
     fi
     
-    # Fish dependencies
-    if command_exists fish; then
-        log_success "Fish is installed"
-    else
-        log_warning "Fish not found. Installing..."
-        install_packages "$pkg_manager" fish
-    fi
+    
     
     # Bash is usually pre-installed
     if command_exists bash; then
@@ -118,6 +112,14 @@ install_shell_deps() {
     else
         log_warning "Bash not found. Installing..."
         install_packages "$pkg_manager" bash
+    fi
+    
+    # Nushell dependencies
+    if command_exists nu; then
+        log_success "Nushell is installed"
+    else
+        log_warning "Nushell not found. Installing..."
+        install_packages "$pkg_manager" nushell
     fi
 }
 

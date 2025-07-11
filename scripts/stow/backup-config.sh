@@ -81,18 +81,7 @@ copy_config() {
             # Copy home directory .bashrc
             cp "$HOME/.bashrc" "$home_target_dir/" 2>/dev/null || log_warning "No ~/.bashrc found"
             ;;
-        "fish")
-            # Copy fish config files, exclude cache files
-            cp "$source_dir/config.fish" "$config_target_dir/" 2>/dev/null || log_warning "No config.fish found"
-            cp "$source_dir/fish_plugins" "$config_target_dir/" 2>/dev/null || log_warning "No fish_plugins found"
-            if [[ -d "$source_dir/conf.d" ]]; then
-                cp -r "$source_dir/conf.d" "$config_target_dir/"
-            fi
-            if [[ -d "$source_dir/functions" ]]; then
-                cp -r "$source_dir/functions" "$config_target_dir/"
-            fi
-            # Exclude: fish_variables, themes/, completions/
-            ;;
+
         "nvim")
             # Copy nvim config files, exclude cache and logs
             cp "$source_dir/init.lua" "$config_target_dir/" 2>/dev/null || log_warning "No init.lua found"
@@ -115,6 +104,11 @@ copy_config() {
         "ghostty")
             # Copy ghostty config files
             cp "$source_dir/config" "$config_target_dir/" 2>/dev/null || log_warning "No config found"
+            ;;
+        "nushell")
+            # Copy nushell config files
+            cp "$source_dir/config.nu" "$config_target_dir/" 2>/dev/null || log_warning "No config.nu found"
+            cp "$source_dir/env.nu" "$config_target_dir/" 2>/dev/null || log_warning "No env.nu found"
             ;;
         *)
             log_warning "Unknown application: $app_name"
@@ -144,7 +138,7 @@ main() {
     log_info "Starting .config backup to stow packages..."
     
     # Backup application-specific configs
-    local apps=("zsh" "fish" "nvim" "bash" "powershell" "gitlab" "ghostty")
+    local apps=("zsh" "nvim" "bash" "powershell" "gitlab" "ghostty" "nushell")
     
     for app in "${apps[@]}"; do
         copy_config "$app"

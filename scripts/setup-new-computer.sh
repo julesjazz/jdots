@@ -126,11 +126,11 @@ setup_shells() {
         fi
     fi
     
-    # Check if fish is available
-    if command -v fish &> /dev/null; then
-        print_success "fish shell is available"
+    # Check if nu is available
+    if command -v nu &> /dev/null; then
+        print_success "nu is available"
     else
-        print_warning "fish shell is not installed"
+        print_warning "nu is not installed"
     fi
 }
 

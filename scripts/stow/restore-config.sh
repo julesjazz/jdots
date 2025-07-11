@@ -169,7 +169,7 @@ main() {
     mkdir -p "$BACKUP_DIR"
     
     # Restore application-specific configs
-    local apps=("zsh" "fish" "nvim" "bash" "powershell" "gitlab" "ghostty")
+    local apps=("zsh" "nvim" "bash" "powershell" "gitlab" "ghostty" "nushell")
     
     for app in "${apps[@]}"; do
         restore_config "$app"

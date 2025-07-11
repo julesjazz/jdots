@@ -47,7 +47,7 @@ _darcs
 ^/stow-packages/.*/\.zcompdump
 ^/stow-packages/.*/\.zcompdump\..*
 ^/stow-packages/.*/\.zsh_history
-^/stow-packages/.*/fish_variables
+
 ^/stow-packages/.*/\.history
 ^/stow-packages/.*/\.history\.backup
 ^/stow-packages/.*/history$

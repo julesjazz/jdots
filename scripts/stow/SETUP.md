@@ -36,7 +36,7 @@ make stow-install-deps
 
 This will automatically:
 - Detect your package manager (Homebrew, apt, yum, dnf, pacman)
-- Install required shells (zsh, fish, bash)
+- Install required shells (zsh, nushell, bash)
 - Install development tools (git, neovim, fzf, fd, ripgrep)
 - Install system tools (tree, stow, starship)
 - Install platform-specific tools (PowerShell, iTerm2, Ghostty on macOS)
@@ -68,7 +68,7 @@ If you prefer to install packages manually:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install required packages
-brew install zsh fish bash git neovim fzf fd ripgrep tree stow starship powershell
+brew install zsh nushell bash git neovim fzf fd ripgrep tree stow starship powershell
 
 # Install optional packages
 brew install --cask iterm2 ghostty
@@ -77,7 +77,8 @@ brew install --cask iterm2 ghostty
 ### Ubuntu/Debian
 ```bash
 sudo apt update
-sudo apt install zsh fish bash git neovim fzf fd-find ripgrep tree stow
+sudo apt install zsh bash git neovim fzf fd-find ripgrep tree stow
+# Note: nushell may need to be installed manually on Ubuntu/Debian
 
 # Install Starship
 curl -sS https://starship.rs/install.sh | sh
@@ -91,7 +92,8 @@ sudo apt install powershell
 
 ### Fedora/RHEL
 ```bash
-sudo dnf install zsh fish bash git neovim fzf fd-find ripgrep tree stow
+sudo dnf install zsh bash git neovim fzf fd-find ripgrep tree stow
+# Note: nushell may need to be installed manually on Fedora/RHEL
 
 # Install Starship
 curl -sS https://starship.rs/install.sh | sh
@@ -122,7 +124,7 @@ Check that everything is working:
 ```bash
 # Check shell versions
 zsh --version
-fish --version
+nu --version
 bash --version
 
 # Check tools
@@ -194,8 +196,8 @@ After setup, your dotfiles will be organized as:
 stow-packages/
 ├── config/           # Maps to ~/.config
 │   ├── zsh/
+│   ├── nushell/
 │   ├── bash/
-│   ├── fish/
 │   ├── nvim/
 │   ├── powershell/
 │   ├── gitlab/

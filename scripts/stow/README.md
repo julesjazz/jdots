@@ -15,7 +15,7 @@ Backs up `.config` files to stow packages while excluding cache files, logs, and
 
 **Supported applications:**
 - zsh (excludes `.zcompdump*`, `.zsh_history`)
-- fish (excludes `fish_variables`, `themes/`, `completions/`)
+- nu (excludes cache files)
 - nvim (excludes `lazyvim.json`, `.neoconf.json`, cache files)
 - bash (excludes `.bashrc.backup`)
 - powershell
@@ -95,13 +95,11 @@ stow-packages/
 │   └── .config/
 │       └── bash/
 │           └── .bashrc
-├── fish/
+├── nushell/
 │   └── .config/
-│       └── fish/
-│           ├── config.fish
-│           ├── fish_plugins
-│           ├── conf.d/
-│           └── functions/
+│       └── nushell/
+│           ├── config.nu
+│           └── env.nu
 ├── nvim/
 │   └── .config/
 │       └── nvim/
@@ -141,7 +139,7 @@ stow-packages/
 
 The following types of files are automatically excluded from stow packages:
 
-- Cache files (`.zcompdump*`, `fish_variables`, etc.)
+- Cache files (`.zcompdump*`, etc.)
 - Log files (`*.log`)
 - Temporary files (`*.tmp`, `*.temp`)
 - Backup files (`*.backup`)
