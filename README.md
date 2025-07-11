@@ -165,7 +165,7 @@ make maintenance
 
 ### asdf Tool Version Management
 
-You can update all asdf-managed tools (Node.js, Python, Terraform) to the latest LTS/stable versions with:
+You can update all asdf-managed tools (Node.js, Python, Terraform, k9s, and more) to the latest LTS/stable versions with:
 
 ```bash
 make asdf-update-lts
@@ -173,7 +173,7 @@ make asdf-update-lts
 
 This will:
 - Update asdf plugins
-- Install the latest LTS/stable versions of Node.js, Python, and Terraform
+- Install the latest LTS/stable versions of Node.js, Python, Terraform, k9s, golang, rust, kubectl, helm, awscli, and azure-cli
 - Set them as the global versions
 - Reshim asdf
 
@@ -183,7 +183,17 @@ This is also included in the full maintenance workflow:
 make maintenance
 ```
 
-The script is located at `scripts/stow/update-asdf-lts.sh` and can be run directly if needed.
+#### Advanced Usage
+
+You can run the update script directly for more options:
+
+```bash
+bash scripts/update-asdf-tools.sh --dry-run           # Show what would be updated
+bash scripts/update-asdf-tools.sh --selective "nodejs,python"  # Update only nodejs and python
+bash scripts/update-asdf-tools.sh --no-plugins        # Skip plugin updates
+```
+
+The script is located at `scripts/update-asdf-tools.sh` and can be run directly if needed.
 
 ## 🐛 Troubleshooting
 

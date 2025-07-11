@@ -51,6 +51,11 @@ help:
 	@echo "  help           - Show this help message"
 	@echo ""
 
+# Alias for maintenance
+default: maintenance
+
+maint: maintenance
+
 # Backup .config files to stow packages
 stow-backup:
 	@echo "Backing up .config files to stow packages..."
@@ -263,11 +268,12 @@ test-nushell-starship:
 	@chmod +x scripts/test-nushell-starship.sh
 	@./scripts/test-nushell-starship.sh
 
-# Update asdf tools to latest LTS/stable versions
+# Update asdf tools to latest LTS/stable versions (now includes k9s)
 asdf-update-lts:
-	@echo "Updating asdf tools to latest LTS/stable versions..."
+	@echo "Updating asdf tools to latest LTS/stable versions (including k9s)..."
 	@chmod +x scripts/stow/update-asdf-lts.sh
-	@./scripts/stow/update-asdf-lts.sh
+	@chmod +x scripts/update-asdf-tools.sh
+	@bash scripts/update-asdf-tools.sh
 
 # Backup verification
 verify-backup:

@@ -278,7 +278,8 @@ while IFS= read -r -d '' file; do
            [[ "$filename" != ".gitmodules" ]] && [[ "$filename" != ".editorconfig" ]] && \
            [[ "$filename" != ".gitattributes" ]] && [[ "$filename" != ".version" ]] && \
            [[ "$filename" != ".revision-hash" ]] && [[ "$filename" != ".pre-commit-config.yaml" ]] && \
-           [[ "$filename" != ".autocomplete__"* ]]; then
+           [[ "$filename" != ".autocomplete__"* ]] && [[ "$filename" != ".tool-versions" ]] && \
+           [[ "$filename" != ".asdfrc" ]]; then
             echo -e "${YELLOW}  Warning: Hidden file found: $file${NC}"
             ((warnings_found++))
             ((hidden_files++))
