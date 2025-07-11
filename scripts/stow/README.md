@@ -16,7 +16,7 @@ Backs up `.config` files to stow packages while excluding cache files, logs, and
 **Supported applications:**
 - zsh (excludes `.zcompdump*`, `.zsh_history`)
 - nu (excludes cache files)
-- nvim (excludes `lazyvim.json`, `.neoconf.json`, cache files)
+- nvim (excludes cache files and logs)
 
 - bash (excludes `.bashrc.backup`)
 - powershell
@@ -106,8 +106,7 @@ stow-packages/
 │   └── .config/
 │       └── nvim/
 │           ├── init.lua
-│           ├── stylua.toml
-│           └── lua/
+│           └── stylua.toml
 ├── powershell/
 │   └── .config/
 │       └── powershell/

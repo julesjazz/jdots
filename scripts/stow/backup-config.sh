@@ -85,11 +85,8 @@ copy_config() {
         "nvim")
             # Copy nvim config files, exclude cache and logs
             cp "$source_dir/init.lua" "$config_target_dir/" 2>/dev/null || log_warning "No init.lua found"
-            if [[ -d "$source_dir/lua" ]]; then
-                cp -r "$source_dir/lua" "$config_target_dir/"
-            fi
             cp "$source_dir/stylua.toml" "$config_target_dir/" 2>/dev/null || log_warning "No stylua.toml found"
-            # Exclude: lazyvim.json, .neoconf.json, .gitignore, LICENSE, README.md
+            # Exclude: cache files, logs, and temporary files
             ;;
         "powershell")
             # Copy PowerShell config files
