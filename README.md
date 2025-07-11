@@ -83,6 +83,8 @@ make help             # Show all available commands
 - **Nu** - Modern shell with structured data support
 - **Bash** - Fallback shell configuration
 
+
+
 ### Development Tools
 - **Neovim** - Modern Vim with Lua configuration
 - **Git** - Version control configuration

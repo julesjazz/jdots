@@ -105,6 +105,8 @@ alias ll = ls -la
 alias la = ls -a
 alias l = ls -l
 
+
+
 # Git aliases (if forgit is available)
 if (which git | is-not-empty) {
     alias gco = git checkout

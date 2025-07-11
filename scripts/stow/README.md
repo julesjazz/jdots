@@ -17,6 +17,7 @@ Backs up `.config` files to stow packages while excluding cache files, logs, and
 - zsh (excludes `.zcompdump*`, `.zsh_history`)
 - nu (excludes cache files)
 - nvim (excludes `lazyvim.json`, `.neoconf.json`, cache files)
+
 - bash (excludes `.bashrc.backup`)
 - powershell
 - gitlab
@@ -100,6 +101,7 @@ stow-packages/
 │       └── nushell/
 │           ├── config.nu
 │           └── env.nu
+
 ├── nvim/
 │   └── .config/
 │       └── nvim/

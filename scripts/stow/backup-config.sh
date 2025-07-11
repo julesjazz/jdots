@@ -110,6 +110,7 @@ copy_config() {
             cp "$source_dir/config.nu" "$config_target_dir/" 2>/dev/null || log_warning "No config.nu found"
             cp "$source_dir/env.nu" "$config_target_dir/" 2>/dev/null || log_warning "No env.nu found"
             ;;
+
         *)
             log_warning "Unknown application: $app_name"
             return 1

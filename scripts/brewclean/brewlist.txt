@@ -1,3 +1,33 @@
+# Brew Cleanup - Fri Jul 11 13:55:55 MDT 2025
+## Master List
+
+## Added Formulas
+- bat
+- fd
+- libgit2
+- libssh2
+- nushell
+- oh-my-posh
+- oniguruma
+- ripgrep
+- stow
+- zoxide
+- zsh-autosuggestions
+
+## Removed Formulas
+- cffi
+- cryptography
+- pycparser
+
+## Added Casks
+- discord
+- font-comic-shanns-mono-nerd-font
+- openlens
+- warp
+- wezterm
+
+---
+
 # Brew Cleanup - Fri Jul 11 12:00:46 MDT 2025
 ## Master List
 

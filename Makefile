@@ -44,6 +44,7 @@ help:
 	@echo "  security-audit - Run security audit on repository"
 	@echo "  health-check   - Run health check on dotfiles setup"
 	@echo "  test-nushell-starship - Test Nu + Starship integration"
+	@echo "  test-lvim      - Test LunarVim installation"
 	@echo "  verify-backup  - Verify backup integrity and completeness"
 	@echo "  maintenance    - Full system maintenance (security + brew cleanup + stow backup)"
 	@echo ""
@@ -261,6 +262,8 @@ test-nushell-starship:
 	@echo "🚀 Testing Nu + Starship integration..."
 	@chmod +x scripts/test-nushell-starship.sh
 	@./scripts/test-nushell-starship.sh
+
+
 
 # Backup verification
 verify-backup:

@@ -37,6 +37,7 @@ make stow-install-deps
 This will automatically:
 - Detect your package manager (Homebrew, apt, yum, dnf, pacman)
 - Install required shells (zsh, nushell, bash)
+
 - Install development tools (git, neovim, fzf, fd, ripgrep)
 - Install system tools (tree, stow, starship)
 - Install platform-specific tools (PowerShell, iTerm2, Ghostty on macOS)
@@ -69,6 +70,7 @@ If you prefer to install packages manually:
 
 # Install required packages
 brew install zsh nushell bash git neovim fzf fd ripgrep tree stow starship powershell
+
 
 # Install optional packages
 brew install --cask iterm2 ghostty
@@ -198,6 +200,7 @@ stow-packages/
 │   ├── zsh/
 │   ├── nushell/
 │   ├── bash/
+
 │   ├── nvim/
 │   ├── powershell/
 │   ├── gitlab/
