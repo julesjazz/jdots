@@ -9,6 +9,13 @@ $env.XDG_CACHE_HOME = $env.HOME + "/.cache"
 # Homebrew setup
 $env.PATH = ($env.PATH | split row (char esep) | prepend "/opt/homebrew/bin")
 
+# ASDF version manager setup
+if ($env.HOME + "/.asdf/asdf.sh" | path exists) {
+    # Source ASDF and add to PATH
+    source ($env.HOME + "/.asdf/asdf.sh")
+    $env.PATH = ($env.PATH | split row (char esep) | prepend ($env.HOME + "/.asdf/shims"))
+}
+
 # History configuration - shared with bash/zsh
 $env.HISTFILE = $env.XDG_CONFIG_HOME + "/.history"
 $env.HISTSIZE = 10000
@@ -86,18 +93,20 @@ $env.config.render_right_prompt_on_last_line = true
 if (which starship | is-empty) {
     echo "Starship not found. Install with: brew install starship"
 } else {
-    # Create cache directory if it doesn't exist
-    mkdir ($env.XDG_CACHE_HOME + "/starship") | ignore
-    
-    # Generate starship init script
-    starship init nu | save --force ($env.XDG_CACHE_HOME + "/starship/init.nu")
-    
-    # Source the starship init script
-    source ($env.XDG_CACHE_HOME + "/starship/init.nu")
-    
     # Set starship environment variables
     $env.STARSHIP_SHELL = "nu"
     $env.STARSHIP_CONFIG = $env.XDG_CONFIG_HOME + "/starship.toml"
+    
+    # Create custom starship prompt function for nushell
+    def create_starship_prompt [] {
+        starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
+    }
+    
+    # Set the prompt
+    $env.PROMPT_COMMAND = { create_starship_prompt }
+    
+    # Set the right prompt (if needed)
+    $env.PROMPT_COMMAND_RIGHT = { "" }
 }
 
 # Custom commands and aliases

@@ -1,3 +1,26 @@
+# Brew Cleanup - Sat Jul 12 18:02:39 MDT 2025
+## Computer: Mac
+
+## Added Formulas
+- asdf
+- git
+- libzip
+- tldr
+- zsh-autosuggestions
+
+## Removed Formulas
+- awscli
+- cffi
+- cryptography
+- helm
+- k9s
+- kubernetes-cli
+- minikube
+- pycparser
+- pyenv
+
+---
+
 # Brew Cleanup - Wed Jul  9 13:08:50 MDT 2025
 ## Computer: Mac - Initial Brew List
 

@@ -32,9 +32,10 @@ cursor_user_rules:
       - GitLab PATs: https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html
 
     shells:
-      - use the primary shell in this order
+    # use the primary shell in this order
       - zsh
       - Bash
+      - Nushell
 
     environments:
       - Dev
@@ -48,32 +49,32 @@ cursor_user_rules:
       - Multi-cell
 
     operating_env:
-      - WSL: https://learn.microsoft.com/en-us/windows/wsl/
+      # - WSL: https://learn.microsoft.com/en-us/windows/wsl/
       - Ubuntu 22.04: https://ubuntu.com/download/desktop
-      - MacOS 15+
+      - MacOS: https://www.apple.com/macos/
 
   backend_technologies:
     languages_platforms:
-      - .NET Core: https://learn.microsoft.com/en-us/dotnet/core/
-      - ASP.NET Core: https://learn.microsoft.com/en-us/aspnet/core/
+      # - .NET Core: https://learn.microsoft.com/en-us/dotnet/core/
+      # - ASP.NET Core: https://learn.microsoft.com/en-us/aspnet/core/
       - SQL Server: https://learn.microsoft.com/en-us/sql/sql-server/
       - Python: https://docs.python.org/3/
-      - Bash
+      - Bash: https://www.gnu.org/software/bash/
 
     migrations:
       - EF Core: https://learn.microsoft.com/en-us/ef/core/
 
     scripting:
-      - PowerShell: https://learn.microsoft.com/en-us/powershell/
+      # - PowerShell: https://learn.microsoft.com/en-us/powershell/
       - Python: https://docs.python.org/3/library/index.html
-      - Bash
+      - Bash: https://www.gnu.org/software/bash/
 
     caching_datastores:
       - Redis / Valkey: https://valkey.io/docs/
       - Amazon ElastiCache: https://docs.aws.amazon.com/elasticache/
 
     crypto:
-      - ECDSA
+      - ECDSA: https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm
       - FIPS 140-2: https://csrc.nist.gov/publications/detail/fips/140/2/final
 
   gateway_security:
@@ -90,7 +91,7 @@ cursor_user_rules:
       - VPC segmentation: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html
 
   devops_workflows:
-    <!-- - Local dev: WSL, Ubuntu 22.04 (ignore this line) -->
+    # <!-- - Local dev: WSL, Ubuntu 22.04 (ignore this line) -->
     - Docker builds and container lifecycle
     - Helm-based K8s deployments
     - Kubernetes manifest diagnostics
@@ -112,20 +113,18 @@ cursor_user_rules:
 
   monitoring_observability:
     - CloudWatch logs: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/
-    - Metrics and alerting
     - Error tracking: https://docs.sentry.io/platforms/dotnet/
     - ASP.NET health checks: https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks/
     - Perf analysis: https://docs.microsoft.com/en-us/dotnet/core/diagnostics/
     - Resource tracking: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html
-    - Splunk
-    - https://app.wiz.io/
-    - 
+    - Splunk: https://www.splunk.com/en_us/products/splunk-enterprise.html
+    - Wizio: https://app.wiz.io/
+    - New Relic: https://newrelic.com/
 
   operational_duties:
     - Endpoint configuration
     - Troubleshooting
-    - Incident response: https://docs.gitlab.com/ee/incident_management/
-      - https://api-docs.incident.io/
+    - Incident response: https://docs.gitlab.com/ee/incident_management/ https://api-docs.incident.io/
     - Recovery protocols
     - Post-mortem analysis: https://sre.google/workbook/postmortem/
 

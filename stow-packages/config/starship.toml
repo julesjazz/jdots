@@ -1,41 +1,41 @@
 format = """
-[░▒▓](#a3aed2)\
 $os\
 $username\
-[ ](bg:#769ff0 fg:#a3aed2)\
 $directory\
-[ ](fg:#769ff0 bg:#394260)\
 $git_branch\
 $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
-[ ](fg:#394260 bg:#212736)\
 $aws\
 $gcloud\
 $azure\
-[ ](fg:#212736 bg:#1d2230)\
 $docker_context\
-[ ](fg:#1d2230 bg:#1d2230)\
 $kubernetes\
-[ ](fg:#1d2230 bg:#1d2230)\
 $time\
-[ ](fg:#1d2230)\
-\n$shell\
+$line_break\
+$shell\
 $character\
 """
 
 # Disable the blank line at the start of the prompt
-# add_newline = false
+add_newline = false
+[fill]
+symbol = ' '
+
+[line_break]
+symbol = "\n"
+disabled = false
 
 # You can also replace your username with a neat symbol like  or disable this
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:#a3aed2"
-style_root = "bg:#a3aed2"
+style_user = "bold purple"
+style_root = "bold red"
 format = '[$user ]($style)'
-disabled = true
+disabled = false
+aliases = {juliasilver = "⚝", root = "ROOT"}
 
 [character]
 format = "$symbol "
@@ -56,7 +56,7 @@ powershell_indicator = ""
 ion_indicator = "Ｉ"
 elvish_indicator = "Ｅ"
 tcsh_indicator = "Ｔ"
-nu_indicator = "🔆"
+nu_indicator = "❖"
 xonsh_indicator = "xsh"
 cmd_indicator = "cmd"
 unknown_indicator = ""
@@ -66,64 +66,64 @@ disabled = false
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
-style = "bg:#a3aed2"
-disabled = false # Disabled by default
+style = "bold white"
+disabled = false
 
 [os.symbols]
-AIX = " ➿ "
-Alpaquita = " 🔔 "
-AlmaLinux = " 💠 "
-Alpine = " 🏔️ "
-Amazon = " 🙂 "
-Android = " 🤖 "
-Arch = " 🎗️ "
-Artix = " 🎗️ "
-Bluefin = " 🐟 "
-CachyOS = " 🎗️ "
-CentOS = " 💠 "
-Debian = " 🌀 "
-DragonFly = " 🐉 "
-Emscripten = " 🔗 "
-EndeavourOS = " 🚀 "
-Fedora = " 🎩 "
-FreeBSD = " 😈 "
-Garuda = " 🦅 "
-Gentoo = " 🗜️ "
-HardenedBSD = " 🛡️ "
-Illumos = " 🐦 "
-Kali = " 🐉 "
-Linux = " 🐧 "
-Mabox = " 📦 "
-Macos = "  "
-Manjaro = " 🥭 "
-Mariner = " 🌊 "
-MidnightBSD = " 🌘 "
-Mint = " 🌿 "
-NetBSD = " 🚩 "
-NixOS = " ❄️ "
-Nobara = " 🎩 "
-OpenBSD = " 🐡 "
+AIX = "➿ "
+Alpaquita = "🔔 "
+AlmaLinux = "💠 "
+Alpine = "🏔️ "
+Amazon = "🙂 "
+Android = "🤖 "
+Arch = "🎗️ "
+Artix = "🎗️ "
+Bluefin = "🐟 "
+CachyOS = "🎗️ "
+CentOS = "💠 "
+Debian = "🌀 "
+DragonFly = "🐉 "
+Emscripten = "🔗 "
+EndeavourOS = "🚀 "
+Fedora = "🎩 "
+FreeBSD = "😈 "
+Garuda = "🦅 "
+Gentoo = "🗜️ "
+HardenedBSD = "🛡️ "
+Illumos = "🐦 "
+Kali = "🐉 "
+Linux = "🐧 "
+Mabox = "📦 "
+Macos = " "
+Manjaro = "🥭 "
+Mariner = "🌊 "
+MidnightBSD = "🌘 "
+Mint = "🌿 "
+NetBSD = "🚩 "
+NixOS = "❄️ "
+Nobara = "🎩 "
+OpenBSD = "🐡 "
 OpenCloudOS = " ☁️ "
-openEuler = " 🦉 "
-openSUSE = " 🦎 "
-OracleLinux = " 🦴 "
-Pop = " 🍭 "
-Raspbian = " 🍓 "
-Redhat = " 🎩 "
-RedHatEnterprise = " 🎩 "
-RockyLinux = " 💠 "
-Redox = " 🧪 "
-Solus = " ⛵ "
-SUSE = " 🦎 "
-Ubuntu = " 🎯 "
-Ultramarine = " 🔷 "
-Unknown = " ❓ "
-Uos = " 🐲 "
-Void = "   "
-Windows = " 🪟 "
+openEuler = "🦉 "
+openSUSE = "🦎 "
+OracleLinux = "🦴 "
+Pop = "🍭 "
+Raspbian = "🍓 "
+Redhat = "🎩 "
+RedHatEnterprise = "🎩 "
+RockyLinux = "💠 "
+Redox = "🧪 "
+Solus = "⛵ "
+SUSE = "🦎 "
+Ubuntu = "🎯 "
+Ultramarine = "🔷 "
+Unknown = "❓ "
+Uos = "🐲 "
+Void = "  "
+Windows = "🪟 "
 
 [directory]
-style = "bg:#769ff0"
+style = "bold white"
 format = "[ $path ]($style)"
 truncation_length = 5
 truncation_symbol = "…/"
@@ -138,16 +138,15 @@ truncation_symbol = "…/"
 "git" = " "
 "code" = " "
 # Keep in mind that the order matters. For example:
-# "Important Documents" = "  "
+# "Important Documents" = " "
 # will not be replaced, because "Documents" was already substituted before.
 # So either put "Important Documents" before "Documents" or use the substituted version:
-# "Important  " = "  "
+# "Important  " = " "
 
 [git_branch]
-style = "bg:#394260"
 format = "[on $symbol$branch(:$remote_branch) ]($style)"
 symbol = " "
-# style = "bold purple"
+style = "bold purple"
 truncation_length = 20
 truncation_symbol = "…"
 only_attached = false
@@ -156,27 +155,26 @@ ignore_branches = []
 disabled = false
 
 [git_commit]
-style = "green bold bg:#394260"
+style = ""
 commit_hash_length = 7
 format = '[\($hash$tag\)]($style)'
 # style = "green bold"
 only_detached = true
 disabled = false
-tag_symbol = " 🏷  "
+tag_symbol = "🏷  "
 tag_disabled = true
 tag_max_candidates = 0
 
 [git_metrics]
-# style = "bg:#394260"
-added_style = "bold green bg:#394260"
-deleted_style = "bold red bg:#394260"
+added_style = "bold green "
+deleted_style = "bold red "
 only_nonzero_diffs = true
 format = "([+$added]($added_style))([-$deleted]($deleted_style))"
 disabled = true
 ignore_submodules = false
 
 [git_state]
-style = "bold yellow bg:#394260"
+style = "bold yellow "
 rebase = "REBASING"
 merge = "MERGING"
 revert = "REVERTING"
@@ -189,7 +187,7 @@ format = '\([$state($progress_current/$progress_total)]($style)\)'
 disabled = false
 
 [git_status]
-style = "red bold bg:#394260"
+style = "red bold"
 format = '[$all_status$ahead_behind]($style)'
 # style = "red bold"
 stashed = '\$'
@@ -209,15 +207,15 @@ disabled = false
 use_git_executable = false
 
 [time]
-disabled = false
+disabled = true
 time_format = "%R" # Hour:Minute Format
-style = "bg:#1d2230"
+style = ""
 format = '[ ♥ $time ]($style)'
 
 [aws]
 format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
-symbol = "☁️ "
-style = "bold yellow bg:#212736"
+symbol = " ☁️ "
+style = "bold yellow"
 disabled = false
 expiration_symbol = "X"
 force_display = false
@@ -228,8 +226,8 @@ force_display = false
 
 [gcloud]
 format = 'on [$symbol$account(@$domain)(\($region\))]($style) '
-symbol = "☁️ "
-style = "bold blue bg:#212736"
+symbol = " ☁️ "
+style = "bold blue"
 disabled = false
 
 [gcloud.region_aliases]
@@ -238,8 +236,8 @@ disabled = false
 
 [azure]
 format = "on [$symbol($subscription)]($style) "
-symbol = "☁️ "
-style = "blue bold bg:#212736"
+symbol = " ☁️ "
+style = "bold blue"
 disabled = true
 
 [azure.subscription_aliases]
@@ -247,6 +245,6 @@ disabled = true
 [kubernetes]
 symbol = "☸ "
 format = '[$symbol$context( \($namespace\))]($style) '
-style = "bg:#1d2230"
+style = "bold blue"
 disabled = false
 

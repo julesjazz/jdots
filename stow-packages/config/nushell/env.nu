@@ -6,6 +6,10 @@ $env.EDITOR = "nvim"
 $env.VISUAL = "nvim"
 $env.PAGER = "less"
 
+# ASDF environment variables
+$env.ASDF_DIR = $env.HOME + "/.asdf"
+$env.ASDF_DATA_DIR = $env.HOME + "/.asdf"
+
 # Development environment
 $env.RUST_BACKTRACE = "1"
 $env.CARGO_INCREMENTAL = "1"
@@ -62,4 +66,28 @@ def show-env [key?: string] {
 def starship-env [] {
     # Show starship-related environment variables
     $env | where name =~ "STARSHIP" | sort-by name
+}
+
+# ASDF utility functions
+def asdf-list [] {
+    # List all installed ASDF tools
+    if (which asdf | is-not-empty) {
+        asdf list
+    } else {
+        echo "ASDF not found"
+    }
+}
+
+def asdf-current [] {
+    # Show current ASDF tool versions
+    if (which asdf | is-not-empty) {
+        asdf current
+    } else {
+        echo "ASDF not found"
+    }
+}
+
+def asdf-env [] {
+    # Show ASDF-related environment variables
+    $env | where name =~ "ASDF" | sort-by name
 } 
