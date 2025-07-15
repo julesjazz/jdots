@@ -33,6 +33,7 @@ _darcs
 ^/config/.*/logs/
 ^/config/logs/.*
 ^/logs/.*
+logs/*
 ^/config/.*/temp/
 ^/config/.*/tmp/
 ^/config/.*/sessions/
