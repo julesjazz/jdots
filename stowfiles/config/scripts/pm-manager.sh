@@ -2,7 +2,7 @@
 
 # Package Manager Manager
 # Handles all package manager operations with OS detection
-# Usage: pm-manager.sh [clean|install|sync] [sync-args]
+# Usage: pm-manager.sh [clean|install|sync|backup-clean] [OPTIONS] [sync-args]
 
 set -e
 
@@ -10,6 +10,38 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Source the detection functions
 source "$SCRIPT_DIR/pm-utils.sh"
+
+# Global options
+DRY_RUN=false
+VERBOSE=false
+QUIET=false
+
+# Parse global options
+parse_options() {
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --dry-run)
+                DRY_RUN=true
+                shift
+                ;;
+            --verbose|-v)
+                VERBOSE=true
+                shift
+                ;;
+            --quiet|-q)
+                QUIET=true
+                shift
+                ;;
+            --help|-h)
+                show_help
+                exit 0
+                ;;
+            *)
+                break
+                ;;
+        esac
+    done
+}
 
 # Colors for output
 RED='\033[0;31m'
@@ -54,6 +86,8 @@ route_to_package_manager() {
         "backup-clean")
             # Backup cleanup works for all package managers
             print_status "Running backup cleanup for all package managers..."
+            # Pass global options to the backup cleanup script
+            export DRY_RUN VERBOSE QUIET
             exec "$SCRIPT_DIR/pm-backup-clean.sh"
             ;;
         *)
@@ -133,7 +167,7 @@ show_help() {
     echo "📦 Package Manager Manager"
     echo "=========================="
     echo ""
-    echo "Usage: $0 [OPERATION] [ARGS...]"
+    echo "Usage: $0 [OPERATION] [OPTIONS] [ARGS...]"
     echo ""
     echo "Operations:"
     echo "  clean                    - Clean up package manager and generate lists"
@@ -141,15 +175,21 @@ show_help() {
     echo "  install                  - Install packages from lists"
     echo "  sync [COMMAND] [ARGS]    - Sync package lists"
     echo ""
+    echo "Global Options:"
+    echo "  --dry-run                - Show what would be done without making changes"
+    echo "  --verbose, -v            - Show detailed output"
+    echo "  --quiet, -q              - Suppress non-error output"
+    echo "  --help, -h               - Show this help message"
+    echo ""
     echo "Sync Commands:"
     echo "  to-master                - Sync computer list to master"
     echo "  from-master              - Sync master list to computer"
     echo "  diff                     - Show differences between lists"
     echo ""
     echo "Examples:"
-    echo "  $0 clean                 # Clean up and generate lists"
-    echo "  $0 backup-clean          # Clean up backup files"
-    echo "  $0 install               # Install packages from lists"
+    echo "  $0 clean --dry-run       # Show what would be cleaned"
+    echo "  $0 backup-clean --verbose # Clean up with detailed output"
+    echo "  $0 install --quiet       # Install packages quietly"
     echo "  $0 sync to-master        # Sync computer list to master"
     echo "  $0 sync from-master      # Sync master list to computer"
     echo "  $0 sync diff             # Show differences"
@@ -158,7 +198,27 @@ show_help() {
 
 # Main execution
 main() {
-    case "${1:-help}" in
+    # Parse global options first
+    parse_options "$@"
+    
+    # Get the operation (first non-option argument)
+    local operation=""
+    for arg in "$@"; do
+        case "$arg" in
+            --*|-*)
+                continue
+                ;;
+            *)
+                operation="$arg"
+                break
+                ;;
+        esac
+    done
+    
+    # Default to help if no operation specified
+    operation="${operation:-help}"
+    
+    case "$operation" in
         "clean")
             route_to_package_manager "clean"
             ;;
@@ -172,11 +232,11 @@ main() {
             shift
             route_to_package_manager "sync" "$@"
             ;;
-        "help"|"-h"|"--help")
+        "help")
             show_help
             ;;
         *)
-            print_error "Unknown operation: $1"
+            print_error "Unknown operation: $operation"
             echo ""
             show_help
             exit 1

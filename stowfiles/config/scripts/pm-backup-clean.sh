@@ -2,7 +2,7 @@
 
 # Package Manager Backup Cleanup Script
 # Cleans up backup files for all supported package managers
-# Usage: pm-backup-clean.sh
+# Usage: pm-backup-clean.sh [OPTIONS]
 
 set -e
 
@@ -10,6 +10,16 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Source the detection functions
 source "$SCRIPT_DIR/pm-utils.sh"
+
+# Global options (passed from pm-manager.sh)
+DRY_RUN=${DRY_RUN:-false}
+VERBOSE=${VERBOSE:-false}
+QUIET=${QUIET:-false}
+
+# Setup logging if verbose mode is enabled
+if [[ "$VERBOSE" == "true" ]]; then
+    setup_logging
+fi
 
 # Colors for output
 RED='\033[0;31m'
@@ -37,6 +47,19 @@ print_error() {
 # Function to prompt for confirmation
 prompt_confirmation() {
     local message="$1"
+    
+    # Skip confirmation in dry-run mode
+    if [[ "$DRY_RUN" == "true" ]]; then
+        print_warning "DRY RUN: Would prompt: $message"
+        return 0
+    fi
+    
+    # Skip confirmation in quiet mode
+    if [[ "$QUIET" == "true" ]]; then
+        print_warning "QUIET MODE: Skipping confirmation"
+        return 1
+    fi
+    
     echo -e "\n${YELLOW}🤔 $message (y/N) [10s timeout]${NC}"
     if read -t 10 -r response; then
         if [[ "$response" =~ ^[Yy]$ ]]; then
@@ -76,10 +99,18 @@ clean_brew_backups() {
     
     if prompt_confirmation "Delete these Homebrew backup files?"; then
         for file in "${backup_files[@]}"; do
-            rm -f "$file"
-            print_success "Deleted: $file"
+            if [[ "$DRY_RUN" == "true" ]]; then
+                print_warning "DRY RUN: Would delete: $file"
+            else
+                rm -f "$file"
+                print_success "Deleted: $file"
+            fi
         done
-        print_success "Homebrew backup cleanup complete"
+        if [[ "$DRY_RUN" == "true" ]]; then
+            print_warning "DRY RUN: Homebrew backup cleanup simulation complete"
+        else
+            print_success "Homebrew backup cleanup complete"
+        fi
     else
         print_warning "Skipped Homebrew backup cleanup"
     fi
@@ -111,10 +142,18 @@ clean_apt_backups() {
     
     if prompt_confirmation "Delete these APT backup files?"; then
         for file in "${backup_files[@]}"; do
-            rm -f "$file"
-            print_success "Deleted: $file"
+            if [[ "$DRY_RUN" == "true" ]]; then
+                print_warning "DRY RUN: Would delete: $file"
+            else
+                rm -f "$file"
+                print_success "Deleted: $file"
+            fi
         done
-        print_success "APT backup cleanup complete"
+        if [[ "$DRY_RUN" == "true" ]]; then
+            print_warning "DRY RUN: APT backup cleanup simulation complete"
+        else
+            print_success "APT backup cleanup complete"
+        fi
     else
         print_warning "Skipped APT backup cleanup"
     fi
@@ -146,10 +185,18 @@ clean_dnf_backups() {
     
     if prompt_confirmation "Delete these DNF backup files?"; then
         for file in "${backup_files[@]}"; do
-            rm -f "$file"
-            print_success "Deleted: $file"
+            if [[ "$DRY_RUN" == "true" ]]; then
+                print_warning "DRY RUN: Would delete: $file"
+            else
+                rm -f "$file"
+                print_success "Deleted: $file"
+            fi
         done
-        print_success "DNF backup cleanup complete"
+        if [[ "$DRY_RUN" == "true" ]]; then
+            print_warning "DRY RUN: DNF backup cleanup simulation complete"
+        else
+            print_success "DNF backup cleanup complete"
+        fi
     else
         print_warning "Skipped DNF backup cleanup"
     fi
@@ -184,10 +231,18 @@ clean_general_backups() {
     
     if prompt_confirmation "Delete these general backup files?"; then
         for file in "${backup_files[@]}"; do
-            rm -f "$file"
-            print_success "Deleted: $file"
+            if [[ "$DRY_RUN" == "true" ]]; then
+                print_warning "DRY RUN: Would delete: $file"
+            else
+                rm -f "$file"
+                print_success "Deleted: $file"
+            fi
         done
-        print_success "General backup cleanup complete"
+        if [[ "$DRY_RUN" == "true" ]]; then
+            print_warning "DRY RUN: General backup cleanup simulation complete"
+        else
+            print_success "General backup cleanup complete"
+        fi
     else
         print_warning "Skipped general backup cleanup"
     fi
@@ -219,10 +274,18 @@ clean_config_backups() {
     
     if prompt_confirmation "Delete these .config backup files?"; then
         for file in "${backup_files[@]}"; do
-            rm -f "$file"
-            print_success "Deleted: $file"
+            if [[ "$DRY_RUN" == "true" ]]; then
+                print_warning "DRY RUN: Would delete: $file"
+            else
+                rm -f "$file"
+                print_success "Deleted: $file"
+            fi
         done
-        print_success ".config backup cleanup complete"
+        if [[ "$DRY_RUN" == "true" ]]; then
+            print_warning "DRY RUN: .config backup cleanup simulation complete"
+        else
+            print_success ".config backup cleanup complete"
+        fi
     else
         print_warning "Skipped .config backup cleanup"
     fi

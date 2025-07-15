@@ -26,6 +26,42 @@ print_error() {
     echo -e "${RED}❌ $1${NC}"
 }
 
+# Logging functions
+setup_logging() {
+    local script_name=$(basename "${BASH_SOURCE[1]}" .sh)
+    local log_dir="$SCRIPT_DIR/../logs"
+    local log_file="$log_dir/${script_name}-$(date +%Y%m%d).log"
+    
+    # Create logs directory if it doesn't exist
+    mkdir -p "$log_dir"
+    
+    # Log to both file and console
+    exec 1> >(tee -a "$log_file") 2>&1
+    
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - Starting $script_name" >> "$log_file"
+}
+
+log_message() {
+    local level="$1"
+    local message="$2"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[$timestamp] [$level] $message"
+}
+
+# Progress indicator functions
+show_progress() {
+    local current="$1"
+    local total="$2"
+    local width=50
+    local percentage=$((current * 100 / total))
+    local filled=$((width * current / total))
+    printf "\r[%-${width}s] %d%%" "$(printf '#%.0s' $(seq 1 $filled))" "$percentage"
+}
+
+clear_progress() {
+    printf "\r%-${width}s\r" ""
+}
+
 # Detect operating system family
 get_os_family() {
     if [[ "$OSTYPE" == "darwin"* ]]; then
