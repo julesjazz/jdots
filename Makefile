@@ -2,6 +2,11 @@ SCRIPTS_DIR := ./scripts
 
 .PHONY: help stow-backup stow-restore stow-add-new stow-deploy stow-status stow-install-deps setup-new security-audit
 
+# TODO: 
+# expand on system packages
+# scripts to restore/backup each OS/manager to stowfiles/system_packages/[brew, apt, dnf]
+# only restore the one that matches the current OS/manager
+
 # Default target
 help:
 	@echo "jdots management commands:"
