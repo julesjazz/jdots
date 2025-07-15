@@ -1,0 +1,5 @@
+# Point to .config/git
+[include]
+    path = ~/.config/git/gitconfig
+[core]
+    excludesFile = ~/.config/git/gitignore

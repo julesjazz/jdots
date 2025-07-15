@@ -1,0 +1,10 @@
+awscli		https://github.com/MetricMike/asdf-awscli.git
+azure-cli		https://github.com/EcoMind/asdf-azure-cli.git
+golang		https://github.com/asdf-community/asdf-golang.git
+helm		https://github.com/Antiarchitect/asdf-helm.git
+k9s		https://github.com/looztra/asdf-k9s.git
+kubectl		https://github.com/asdf-community/asdf-kubectl.git
+nodejs		https://github.com/asdf-vm/asdf-nodejs.git
+python		https://github.com/danhper/asdf-python.git
+rust		https://github.com/code-lever/asdf-rust.git
+terraform		https://github.com/asdf-community/asdf-hashicorp.git

@@ -119,3 +119,15 @@ local/
 # System specific
 *.orig
 *.rej
+
+# 🔒 Prevent sensitive/shell session files from being committed
+stowfiles/**/.zsh_history
+stowfiles/**/.zcompdump*
+stowfiles/**/.z
+stowfiles/**/netrwhist
+stowfiles/**/sessions/
+stowfiles/**/logs/
+stowfiles/**/undo/
+stowfiles/**/cache/
+stowfiles/**/tmp/
+stowfiles/**/temp/

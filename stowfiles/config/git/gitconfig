@@ -1,0 +1,19 @@
+[user]
+	# signingkey = REMOVED_FOR_SECURITY
+	name = Julia Silver
+	email = [REDACTED]@filevine.com
+[color]
+	ui = auto
+[core]
+	excludesfile = /Users/juliasilver/.gitignore_global
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

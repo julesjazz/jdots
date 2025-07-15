@@ -1,0 +1,164 @@
+# === General Secrets ===
+*.pem
+*.key
+*.crt
+*.csr
+*.der
+*.p12
+*.pub
+*.enc
+*.jwk
+*.token
+*.pfx
+*.srl
+*.vault.*
+*.bak
+*.old
+*.swp
+*.env
+.env.*
+.secrets/
+.secret*
+
+# === AWS CLI & SDKs ===
+.aws/
+*.awsprofile
+credentials.csv  # from IAM Console
+.aws-sam/
+cdk.out/
+.sagemaker/
+
+# === Azure CLI ===
+.azure/
+azureProfile.json
+accessTokens.json
+*.azureprofile
+*.azurepubkeys
+
+# === Terraform ===
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*.tfplan
+
+# === Python (3.13.5) ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.python_history
+*.egg-info/
+.eggs/
+pip-log.txt
+*.ipynb_checkpoints
+*.cover
+htmlcov/
+.cache/
+.tox/
+.venv/
+venv/
+env/
+
+# === Node.js (24.4.0) ===
+node_modules/
+.npm/
+.pnpm/
+.yarn/
+.yarnrc.yml
+yarn.lock
+package-lock.json
+dist/
+build/
+*.tsbuildinfo
+.nyc_output/
+coverage/
+
+# === Golang (1.24.5) ===
+*.exe
+*.test
+*.out
+*.a
+vendor/
+bin/
+pkg/
+go.sum
+go.work
+go.work.sum
+
+# === Rust (1.88.0) ===
+target/
+Cargo.lock
+*.rs.bk
+
+# === Kubernetes (kubectl 1.33.2, K9s 0.50.7) ===
+.kube/
+.k9s/
+*.kubeconfig
+
+# === Helm (3.18.4) ===
+charts/
+*.tgz
+*.lock
+.tmp/
+
+# === Logs and Temp ===
+*.log
+*.log.*
+nohup.out
+*.pid
+*.sock
+*.tmp
+tmp/
+temp/
+*.out
+
+# === OS / Editor / Tool Specific ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# === Shell + Misc ===
+*.sh~
+.bash_history
+.zsh_history
+.bashrc
+*.rej
+*.patch
+*.diff
+*.orig
+
+# === Git / Merge Tools ===
+*.orig
+*.rej
+*.conflict
+*.merge_file
+
+# === Neovim ===
+*.swp
+*.swo
+*.swn
+*.un~
+*.tmp
+*~
+.netrwhist
+view/
+Session.vim
+
+# === VS Code ===
+.vscode/
+*.code-workspace
+.history/
+
+# === Cursor IDE ===
+.cursor/
+cursor.json

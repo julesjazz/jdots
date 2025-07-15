@@ -61,3 +61,24 @@ _darcs
 ^/stow-packages/.*/completions/
 ^/stow-packages/.*/AppSupport/
 ^/stow-packages/.*/sockets/
+
+# Prevent shell config files from being deployed to ~/.config
+^/stow-packages/config/.*/\.bashrc$
+^/stow-packages/config/.*/\.zshrc$
+
+# Secure shell state and history files
+^/config/.*/\.zsh_history
+^/config/.*/\.zcompdump
+^/config/.*/\.zcompdump\..*
+^/config/.*/\.z$
+^/config/.*/\.fasd
+^/config/.*/\.z$
+^/config/.*/\.z$history
+^/config/.*/\.z$session
+^/config/.*/\.sessions
+^/config/.*/netrwhist
+^/home/\.zsh_history$
+^/home/\.zcompdump$
+^/home/\.z$
+^/home/\.fasd$
+^/home/.sessions$
