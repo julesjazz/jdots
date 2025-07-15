@@ -1,6 +1,6 @@
 SCRIPTS_DIR := ./scripts
 
-.PHONY: help stow-backup stow-restore stow-add-new stow-deploy stow-clean stow-status stow-install-deps setup-new security-audit
+.PHONY: help stow-backup stow-restore stow-add-new stow-deploy stow-status stow-install-deps setup-new security-audit
 
 # Default target
 help:
@@ -11,7 +11,7 @@ help:
 	@echo "  stow-restore   - Restore .config files from stow packages"
 	@echo "  stow-add-new   - Add new .config directories to stow packages"
 	@echo "  stow-deploy    - Deploy stow packages to ~/.config"
-	@echo "  stow-clean     - Clean up stow packages (remove symlinks)"
+
 	@echo "  stow-status    - Show status of stow packages"
 	@echo "  stow-install-deps - Install dependencies for dotfiles"
 	@echo ""
@@ -41,9 +41,7 @@ stow-deploy:
 	@echo "🚀 Deploying stow packages to ~/.config..."
 	@$(SCRIPTS_DIR)/stow-deploy.sh
 
-stow-clean:
-	@echo "🧹 Cleaning up stow packages (removing symlinks)..."
-	@$(SCRIPTS_DIR)/stow-clean.sh
+
 
 stow-status:
 	@echo "📊 Showing status of stow packages..."

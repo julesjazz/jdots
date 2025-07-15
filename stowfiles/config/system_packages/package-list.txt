@@ -1,0 +1,163 @@
+# Cross-Platform Package List
+# Format: package_name [platforms] [notes]
+# Platforms: macos, debian, redhat, all
+# 
+# Examples:
+# git all                    # Available on all platforms
+# htop macos,debian,redhat   # Available on all Linux + macOS
+# brew macos                 # macOS only
+# apt debian                 # Debian/Ubuntu only
+# dnf redhat                 # Fedora/RHEL only
+
+# =============================================================================
+# DEVELOPMENT TOOLS
+# =============================================================================
+
+# Version Managers
+asdf all                     # Universal version manager
+node all                     # Node.js runtime
+python all                   # Python interpreter
+ruby all                     # Ruby interpreter
+go all                       # Go programming language
+rust all                     # Rust programming language
+
+# Build Tools
+make all                     # Build automation tool
+cmake all                    # Cross-platform build system
+ninja all                    # Build system
+
+# Package Managers
+npm all                      # Node.js package manager
+pip all                      # Python package manager
+cargo all                    # Rust package manager
+gem all                      # Ruby package manager
+
+# =============================================================================
+# SYSTEM UTILITIES
+# =============================================================================
+
+# File Management
+fd all                       # Fast file finder
+ripgrep all                  # Fast grep replacement
+bat all                      # Better cat with syntax highlighting
+exa all                      # Modern ls replacement
+tree all                     # Directory tree viewer
+
+# Process Management
+htop all                     # Interactive process viewer
+btm all                      # Bottom process monitor
+
+# Network Tools
+curl all                     # HTTP client
+wget all                     # File downloader
+httpie all                   # User-friendly HTTP client
+jq all                       # JSON processor
+
+# =============================================================================
+# DEVELOPMENT ENVIRONMENT
+# =============================================================================
+
+# Editors
+neovim all                   # Modern Vim
+code macos,debian            # VS Code (not available on RHEL by default)
+
+# Shell Tools
+zsh all                      # Z shell
+starship all                 # Cross-shell prompt
+fzf all                      # Fuzzy finder
+zoxide all                   # Smart cd replacement
+
+# Git Tools
+git all                      # Version control
+git-delta all                # Git diff viewer
+lazygit all                  # Git TUI
+
+# =============================================================================
+# PLATFORM-SPECIFIC TOOLS
+# =============================================================================
+
+# macOS Specific
+brew macos                   # Homebrew package manager
+mas macos                    # Mac App Store CLI
+xcode-select macos           # Xcode command line tools
+
+# Debian/Ubuntu Specific
+apt debian                   # APT package manager
+apt-transport-https debian   # HTTPS transport for APT
+ca-certificates debian       # CA certificates
+software-properties-common debian  # Software properties
+
+# Fedora/RHEL Specific
+dnf redhat                   # DNF package manager
+yum redhat                   # YUM package manager (legacy)
+dnf-plugins-core redhat      # Core DNF plugins
+
+# =============================================================================
+# CONTAINER & CLOUD TOOLS
+# =============================================================================
+
+# Containers
+docker all                   # Container platform
+docker-compose all           # Multi-container Docker
+podman redhat,debian         # Container engine (RHEL/Debian)
+buildah redhat,debian        # Container build tool
+
+# Cloud Tools
+awscli all                   # AWS CLI
+gcloud all                   # Google Cloud CLI
+az all                       # Azure CLI
+kubectl all                  # Kubernetes CLI
+helm all                     # Kubernetes package manager
+terraform all                # Infrastructure as Code
+
+# =============================================================================
+# DATABASE TOOLS
+# =============================================================================
+
+# Database Clients
+postgresql-client all        # PostgreSQL client
+mysql-client all             # MySQL client
+sqlite3 all                  # SQLite client
+redis-cli all                # Redis client
+
+# =============================================================================
+# MONITORING & OBSERVABILITY
+# =============================================================================
+
+# Monitoring
+prometheus all               # Monitoring system
+grafana all                  # Visualization platform
+jaeger all                   # Distributed tracing
+
+# Logging
+fluentd all                  # Log collector
+logstash all                 # Log processor
+
+# =============================================================================
+# SECURITY TOOLS
+# =============================================================================
+
+# Security
+gpg all                      # GNU Privacy Guard
+openssl all                  # SSL/TLS toolkit
+ssh all                      # SSH client/server
+vault all                    # Secret management
+
+# =============================================================================
+# MEDIA & GRAPHICS
+# =============================================================================
+
+# Media
+ffmpeg all                   # Multimedia framework
+imagemagick all              # Image manipulation
+pngquant all                 # PNG compression
+
+# =============================================================================
+# NOTES
+# =============================================================================
+
+# Platform-specific installation notes:
+# - Some packages may have different names across platforms
+# - Some packages may require additional repositories
+# - Some packages may have different installation methods
+# - Platform-specific packages are filtered out during installation 

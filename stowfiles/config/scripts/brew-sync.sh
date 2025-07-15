@@ -6,9 +6,14 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-MASTER_BREW_LIST_PATH="$SCRIPT_DIR/brewlist.txt"
+
+# Source utilities and ensure platform directory exists
+source "$SCRIPT_DIR/pm-utils.sh"
+BREW_DIR=$(ensure_platform_dir "$SCRIPT_DIR/../system_packages")
+
+MASTER_BREW_LIST_PATH="$BREW_DIR/brewlist.txt"
 HOSTNAME=$(hostname | sed 's/\.local.*$//')
-COMPUTER_BREW_LIST_PATH="$SCRIPT_DIR/brewlist-${HOSTNAME}.txt"
+COMPUTER_BREW_LIST_PATH="$BREW_DIR/brewlist-${HOSTNAME}.txt"
 
 # Colors for output
 RED='\033[0;31m'
