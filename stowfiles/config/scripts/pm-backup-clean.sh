@@ -193,6 +193,41 @@ clean_general_backups() {
     fi
 }
 
+# Function to clean .config backup files
+clean_config_backups() {
+    print_status "Checking for backup files in .config directory..."
+    
+    local config_dir="$SCRIPT_DIR/.."
+    local backup_files=()
+    
+    # Find backup files in .config directory
+    if [[ -d "$config_dir" ]]; then
+        while IFS= read -r -d '' file; do
+            backup_files+=("$file")
+        done < <(find "$config_dir" -name "*.backup" -o -name "*.bak" -o -name "*.old" -o -name "*.orig" -print0 2>/dev/null || true)
+    fi
+    
+    if [[ ${#backup_files[@]} -eq 0 ]]; then
+        print_success "No .config backup files found"
+        return 0
+    fi
+    
+    print_warning "Found ${#backup_files[@]} backup files in .config:"
+    for file in "${backup_files[@]}"; do
+        echo "  - $file"
+    done
+    
+    if prompt_confirmation "Delete these .config backup files?"; then
+        for file in "${backup_files[@]}"; do
+            rm -f "$file"
+            print_success "Deleted: $file"
+        done
+        print_success ".config backup cleanup complete"
+    else
+        print_warning "Skipped .config backup cleanup"
+    fi
+}
+
 # Main execution
 main() {
     echo "🗑️  Package Manager Backup Cleanup"
@@ -227,6 +262,11 @@ main() {
     
     # Clean general backup files
     clean_general_backups
+    
+    echo ""
+    
+    # Clean .config backup files
+    clean_config_backups
     
     echo ""
     print_success "Backup cleanup process complete!"
