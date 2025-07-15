@@ -50,70 +50,80 @@ route_to_package_manager() {
     print_status "Detected OS: $OS_INFO"
     print_status "Using package manager: $PM"
     
-    case "$PM" in
-        "brew")
-            case "$operation" in
-                "clean")
-                    print_status "Running Homebrew cleanup..."
-                    exec "$SCRIPT_DIR/brew-clean.sh"
-                    ;;
-                "install")
-                    print_status "Running Homebrew install..."
-                    exec "$SCRIPT_DIR/brew-install.sh"
-                    ;;
-                "sync")
-                    print_status "Running Homebrew sync..."
-                    exec "$SCRIPT_DIR/brew-sync.sh" "$@"
-                    ;;
-                *)
-                    print_error "Unknown operation: $operation"
-                    exit 1
-                    ;;
-            esac
-            ;;
-        "apt")
-            case "$operation" in
-                "clean")
-                    print_error "APT clean not yet implemented"
-                    exit 1
-                    ;;
-                "install")
-                    print_error "APT install not yet implemented"
-                    exit 1
-                    ;;
-                "sync")
-                    print_error "APT sync not yet implemented"
-                    exit 1
-                    ;;
-                *)
-                    print_error "Unknown operation: $operation"
-                    exit 1
-                    ;;
-            esac
-            ;;
-        "dnf"|"yum")
-            case "$operation" in
-                "clean")
-                    print_error "DNF clean not yet implemented"
-                    exit 1
-                    ;;
-                "install")
-                    print_error "DNF install not yet implemented"
-                    exit 1
-                    ;;
-                "sync")
-                    print_error "DNF sync not yet implemented"
-                    exit 1
-                    ;;
-                *)
-                    print_error "Unknown operation: $operation"
-                    exit 1
-                    ;;
-            esac
+    case "$operation" in
+        "backup-clean")
+            # Backup cleanup works for all package managers
+            print_status "Running backup cleanup for all package managers..."
+            exec "$SCRIPT_DIR/pm-backup-clean.sh"
             ;;
         *)
-            print_error "Unsupported package manager: $PM"
-            exit 1
+            # Route other operations to specific package managers
+            case "$PM" in
+                "brew")
+                    case "$operation" in
+                        "clean")
+                            print_status "Running Homebrew cleanup..."
+                            exec "$SCRIPT_DIR/brew-clean.sh"
+                            ;;
+                        "install")
+                            print_status "Running Homebrew install..."
+                            exec "$SCRIPT_DIR/brew-install.sh"
+                            ;;
+                        "sync")
+                            print_status "Running Homebrew sync..."
+                            exec "$SCRIPT_DIR/brew-sync.sh" "$@"
+                            ;;
+                        *)
+                            print_error "Unknown operation: $operation"
+                            exit 1
+                            ;;
+                    esac
+                    ;;
+                "apt")
+                    case "$operation" in
+                        "clean")
+                            print_error "APT clean not yet implemented"
+                            exit 1
+                            ;;
+                        "install")
+                            print_error "APT install not yet implemented"
+                            exit 1
+                            ;;
+                        "sync")
+                            print_error "APT sync not yet implemented"
+                            exit 1
+                            ;;
+                        *)
+                            print_error "Unknown operation: $operation"
+                            exit 1
+                            ;;
+                    esac
+                    ;;
+                "dnf"|"yum")
+                    case "$operation" in
+                        "clean")
+                            print_error "DNF clean not yet implemented"
+                            exit 1
+                            ;;
+                        "install")
+                            print_error "DNF install not yet implemented"
+                            exit 1
+                            ;;
+                        "sync")
+                            print_error "DNF sync not yet implemented"
+                            exit 1
+                            ;;
+                        *)
+                            print_error "Unknown operation: $operation"
+                            exit 1
+                            ;;
+                    esac
+                    ;;
+                *)
+                    print_error "Unsupported package manager: $PM"
+                    exit 1
+                    ;;
+            esac
             ;;
     esac
 }
@@ -127,6 +137,7 @@ show_help() {
     echo ""
     echo "Operations:"
     echo "  clean                    - Clean up package manager and generate lists"
+    echo "  backup-clean             - Clean up backup files (prompts for confirmation)"
     echo "  install                  - Install packages from lists"
     echo "  sync [COMMAND] [ARGS]    - Sync package lists"
     echo ""
@@ -137,6 +148,7 @@ show_help() {
     echo ""
     echo "Examples:"
     echo "  $0 clean                 # Clean up and generate lists"
+    echo "  $0 backup-clean          # Clean up backup files"
     echo "  $0 install               # Install packages from lists"
     echo "  $0 sync to-master        # Sync computer list to master"
     echo "  $0 sync from-master      # Sync master list to computer"
@@ -149,6 +161,9 @@ main() {
     case "${1:-help}" in
         "clean")
             route_to_package_manager "clean"
+            ;;
+        "backup-clean")
+            route_to_package_manager "backup-clean"
             ;;
         "install")
             route_to_package_manager "install"
