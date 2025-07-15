@@ -272,14 +272,28 @@ hidden_files=0
 while IFS= read -r -d '' file; do
     if [ -f "$file" ]; then
         filename=$(basename "$file")
-        # Skip expected hidden files
-        if [[ "$filename" == .* ]] && [[ "$filename" != ".gitignore" ]] && [[ "$filename" != ".stow-local-ignore" ]] && \
+        # Skip expected safe hidden files
+        if [[ "$filename" == .* ]] && \
+           [[ "$filename" != ".gitignore" ]] && [[ "$filename" != ".stow-local-ignore" ]] && \
            [[ "$filename" != ".zshrc" ]] && [[ "$filename" != ".bashrc" ]] && [[ "$filename" != ".aliases" ]] && \
            [[ "$filename" != ".gitmodules" ]] && [[ "$filename" != ".editorconfig" ]] && \
            [[ "$filename" != ".gitattributes" ]] && [[ "$filename" != ".version" ]] && \
            [[ "$filename" != ".revision-hash" ]] && [[ "$filename" != ".pre-commit-config.yaml" ]] && \
            [[ "$filename" != ".autocomplete__"* ]] && [[ "$filename" != ".tool-versions" ]] && \
-           [[ "$filename" != ".asdfrc" ]]; then
+           [[ "$filename" != ".asdfrc" ]] && \
+           # macOS system files
+           [[ "$filename" != ".DS_Store" ]] && \
+           # Shell history and cache files (should be ignored by git)
+           [[ "$filename" != ".zsh_history" ]] && [[ "$filename" != ".bash_history" ]] && \
+           [[ "$filename" != ".zcompdump"* ]] && [[ "$filename" != ".z" ]] && \
+           # Backup files
+           [[ "$filename" != "*.backup" ]] && [[ "$filename" != "*.bak" ]] && \
+           # NPM and package manager files
+           [[ "$filename" != ".npmignore" ]] && [[ "$filename" != ".zunit.yml" ]] && \
+           # Editor and IDE files
+           [[ "$filename" != ".history" ]] && [[ "$filename" != ".vscode" ]] && \
+           # Plugin and tool specific files
+           [[ "$filename" != ".stow-local-ignore" ]] && [[ "$filename" != ".stow-local-ignore~" ]]; then
             echo -e "${YELLOW}  Warning: Hidden file found: $file${NC}"
             ((warnings_found++))
             ((hidden_files++))
