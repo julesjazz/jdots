@@ -1,0 +1,36 @@
+# Ignore all files in logs directories (keep directory structure)
+logs/*
+
+# Common temporary and cache directories
+cache/
+temp/
+tmp/
+sessions/
+undo/
+swap/
+backup/
+spell/
+
+# Log files
+*.log
+
+# Shell history and state files
+.history
+.zcompdump*
+.zsh_history
+.netrwhist
+
+# Editor backup files
+*~
+*.backup
+*.bak
+*.old
+*.orig
+
+# Git and version control
+.git/
+.gitignore
+.gitmodules
+
+# macOS
+.DS_Store 

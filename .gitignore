@@ -148,3 +148,4 @@ stowfiles/**/undo/
 stowfiles/**/cache/
 stowfiles/**/tmp/
 stowfiles/**/temp/
+**/logs/*

@@ -1,0 +1,15 @@
+--ignore=logs/.*
+--ignore=logs/*
+--ignore=.*\.log$
+--ignore=cache/
+--ignore=temp/
+--ignore=tmp/
+--ignore=sessions/
+--ignore=undo/
+--ignore=swap/
+--ignore=backup/
+--ignore=spell/
+--ignore=netrwhist
+--ignore=\.history
+--ignore=\.zcompdump
+--ignore=\.zsh_history 

@@ -18,10 +18,10 @@ restore() {
     # Avoid overwriting plugins in ~/.config/zsh
     if [[ "$target" == "$HOME/.config" && "$name" == "zsh" ]]; then
       echo "♻️  Restoring $name (excluding plugins/) to $target"
-      rsync -a --exclude 'plugins/***' --exclude-from=.stow-local-ignore "$dir" "$target/"
+      rsync -a --exclude-from=.rsyncignore "$dir" "$target/"
     else
       echo "♻️  Restoring $name to $target"
-      rsync -a --exclude-from=.stow-local-ignore "$dir" "$target/"
+      rsync -a --exclude-from=.rsyncignore "$dir" "$target/"
     fi
   done
 }

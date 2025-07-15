@@ -25,22 +25,7 @@ backup_config() {
     mkdir -p "$dest/$name"
 
     rsync -a --delete \
-      --exclude 'plugins/***' \
-      --exclude '*.zsh_history' \
-      --exclude '*.zcompdump*' \
-      --exclude '*.z' \
-      --exclude 'sessions/***' \
-      --exclude 'netrwhist' \
-      --exclude 'undo/***' \
-      --exclude 'logs/***' \
-      --exclude 'temp/***' \
-      --exclude 'tmp/***' \
-      --exclude 'cache/***' \
-      --exclude '*.backup' \
-      --exclude '*.bak' \
-      --exclude '*.old' \
-      --exclude '*.orig' \
-      --exclude-from=.stow-local-ignore \
+      --exclude-from=.rsyncignore \
       "$dir" "$dest/$name/"
   done
 }
@@ -54,10 +39,7 @@ backup_home() {
     if [[ -f "$src_file" ]]; then
       echo "📝  Backing up $file → $dest/"
       rsync -a --delete \
-        --exclude '*.zsh_history' \
-        --exclude '*.zcompdump*' \
-        --exclude '*.z' \
-        --exclude-from=.stow-local-ignore \
+        --exclude-from=.rsyncignore \
         "$src_file" "$dest/"
     else
       echo "⚠️  Skipping $file — not found in \$HOME"
