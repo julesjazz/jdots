@@ -2,6 +2,7 @@
 1. set up neovim to be a fully featured IDE
 2. panes should include: project directory list, current file editing window, a terminal section that I can toggle, a section to the right for cli LLM reference or other terminal commands
 3. plugins to support my workflow
+4. neovim configs and plugins should reside in ~/.config/nvim, if a config file needs to exist in ~ add it with a pointer to ~/.config/nvim instead of using a symlink
 
 # My workflow
 Role: Site Reliability Engineer
@@ -20,3 +21,14 @@ Languages
     python		https://github.com/danhper/asdf-python.git
     rust		https://github.com/code-lever/asdf-rust.git
     terraform		https://github.com/asdf-community/asdf-hashicorp.git
+    lua
+    Markdown
+    makefile 
+    bash
+    toml
+    docker
+    kubernetes
+    json
+    sql
+
+if there is an icon theme available I would like to add it

@@ -1,4 +1,4 @@
-# zmodload zsh/zprof  # Uncomment to enable profiling
+# zmodload zsh/zprof  # Uncomment this and bottom to enable profiling
 
 # ── Zsh Environment & Path Setup ────────────────────────────────────────────────
 # Set zsh config directory

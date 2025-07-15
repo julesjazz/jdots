@@ -9,12 +9,12 @@ $env.XDG_CACHE_HOME = $env.HOME + "/.cache"
 # Homebrew setup
 $env.PATH = ($env.PATH | split row (char esep) | prepend "/opt/homebrew/bin")
 
-# ASDF version manager setup
-if ($env.HOME + "/.asdf/asdf.sh" | path exists) {
-    # Source ASDF and add to PATH
-    source ($env.HOME + "/.asdf/asdf.sh")
-    $env.PATH = ($env.PATH | split row (char esep) | prepend ($env.HOME + "/.asdf/shims"))
-}
+# # ASDF version manager setup
+# if ($env.HOME + "/.asdf/asdf.sh" | path exists) {
+#     # Source ASDF and add to PATH
+#     source ($env.HOME + "/.asdf/asdf.sh")
+#     $env.PATH = ($env.PATH | split row (char esep) | prepend ($env.HOME + "/.asdf/shims"))
+# }
 
 # History configuration - shared with bash/zsh
 $env.HISTFILE = $env.XDG_CONFIG_HOME + "/.history"
@@ -92,16 +92,16 @@ def starship-config [] {
     }
 }
 
-def starship-reload [] {
-    # Reload starship configuration
-    if (which starship | is-not-empty) {
-        starship init nu | save --force ($env.XDG_CACHE_HOME + "/starship/init.nu")
-        source ($env.XDG_CACHE_HOME + "/starship/init.nu")
-        echo "Starship configuration reloaded"
-    } else {
-        echo "Starship not found"
-    }
-}
+# def starship-reload [] {
+#     # Reload starship configuration
+#     if (which starship | is-not-empty) {
+#         starship init nu | save --force ($env.XDG_CACHE_HOME + "/starship/init.nu")
+#         source ($env.XDG_CACHE_HOME + "/starship/init.nu")
+#         echo "Starship configuration reloaded"
+#     } else {
+#         echo "Starship not found"
+#     }
+# }
 
 # def starship-status [] {
 #     # Show starship status and configuration
