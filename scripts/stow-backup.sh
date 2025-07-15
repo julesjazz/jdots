@@ -81,20 +81,30 @@ DATE=$(date '+%Y-%m-%d %H:%M')
 if git diff --quiet && git diff --cached --quiet; then
   echo "ℹ️  No changes to commit"
 else
-  # Add all changes
-  git add .
-  
-  # Commit with descriptive message
-  COMMIT_MSG="backup: $HOSTNAME - $DATE"
-  git commit -m "$COMMIT_MSG"
-  
-  echo "✅  Committed: $COMMIT_MSG"
-  
-  # Push to remote
-  echo -e "\n🚀  \033[1;34mPushing to remote repository...\033[0m"
-  if git push; then
-    echo "✅  Successfully pushed to remote"
+  # Confirmation prompt with timeout
+  echo -e "\n🤔  \033[1;33mCommit and push changes? (y/N) [20s timeout]\033[0m"
+  if read -t 20 -r response; then
+    if [[ "$response" =~ ^[Yy]$ ]]; then
+      # Add all changes
+      git add .
+      
+      # Commit with descriptive message
+      COMMIT_MSG="backup: $HOSTNAME - $DATE"
+      git commit -m "$COMMIT_MSG"
+      
+      echo "✅  Committed: $COMMIT_MSG"
+      
+      # Push to remote
+      echo -e "\n🚀  \033[1;34mPushing to remote repository...\033[0m"
+      if git push; then
+        echo "✅  Successfully pushed to remote"
+      else
+        echo "⚠️  Push failed - check your git remote configuration"
+      fi
+    else
+      echo "⏭️  Skipping git operations"
+    fi
   else
-    echo "⚠️  Push failed - check your git remote configuration"
+    echo "⏰  Timeout - skipping git operations"
   fi
 fi
