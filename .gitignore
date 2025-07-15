@@ -19,6 +19,23 @@ Thumbs.db
 *.temp
 *.log
 
+# Security - Credentials and keys
+*.key
+*.pem
+*.p12
+*.crt
+*.pem
+id_rsa*
+*.env
+.env*
+.secrets/
+.secret*
+accessTokens.json
+*.azurepubkeys
+credentials.json
+token.json
+config.json
+
 # Cache directories
 .cache/
 *.cache
