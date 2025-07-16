@@ -25,9 +25,8 @@ backup_config() {
     src_file="$src/$file"
     if [[ -f "$src_file" ]]; then
       echo "  📄  Backing up $file"
-      rsync -a --delete \
-        --exclude-from=.rsyncignore \
-        "$src_file" "$dest/config-root/"
+      # Use cp instead of rsync for these specific files to avoid .rsyncignore conflicts
+      cp "$src_file" "$dest/config-root/"
     else
       echo "  ⚠️  Skipping $file — not found in \$HOME/.config"
     fi

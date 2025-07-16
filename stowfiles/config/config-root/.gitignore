@@ -1,0 +1,29 @@
+# Failsafe gitignore to add to backup ignore
+# Ignore compiled, temporary, and backup files
+*.bak
+*.tmp
+*.swp
+*.swo
+*~
+
+# Ignore temp and generated files
+.config/temp*
+
+# Zsh: ignore plugin contents and history
+.config/zsh/plugins/
+.config/.history
+.config/zsh/.z
+.config/zsh/.zcompdump*
+
+# ASDF: ignore tool versions, backups, plugin state
+.config/asdf/tool-versions.bak
+.config/asdf/plugin-list.txt
+.config/asdf/asdf-sh-symlink.txt
+
+# Optional: ignore all of .config/scripts (if personal/private)
+# .config/scripts/
+
+# iTerm2 secrets and symlinks
+.config/iterm2/sockets/
+.config/iterm2/AppSupport/
+.config/iterm2/sockets/secrets
