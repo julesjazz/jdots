@@ -57,7 +57,6 @@ source ~/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh
 load_plugin ~/.config/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 load_plugin ~/.config/zsh/plugins/zsh-safe-rm/zsh-safe-rm.plugin.zsh
 load_plugin ~/.config/zsh/plugins/colored-man-pages/colored-man-pages.plugin.zsh
-load_plugin ~/.config/zsh/plugins/git-open/git-open.plugin.zsh
 zsh-defer load_plugin ~/.config/zsh/plugins/forgit/forgit.plugin.zsh
 zsh-defer load_plugin ~/.config/zsh/plugins/z/z.sh
 zsh-defer load_plugin ~/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
