@@ -119,6 +119,7 @@ ZCOMPDUMP_ACTIVE="${ZCOMPDUMP_DIR}/${ZCOMPDUMP_BASENAME}-${HOST}-${ZSH_VERSION}"
 ZCOMPDUMP_MAX_AGE_DAYS=1
 
 # Clean up old .zcompdump files, skip the current one
+setopt local_options nullglob
 for file in "$ZCOMPDUMP_DIR"/$ZCOMPDUMP_BASENAME*; do
   [[ -e "$file" ]] || continue
   [[ "$file" == "$ZCOMPDUMP_ACTIVE"* ]] && continue
@@ -127,7 +128,7 @@ for file in "$ZCOMPDUMP_DIR"/$ZCOMPDUMP_BASENAME*; do
     rm -f -- "$file"
   fi
 done
-
+unsetopt nullglob
 # # Initialize completions (cached if .zcompdump exists and is valid)
 zsh-defer() { eval "$1" &! }
 zsh-defer "compinit -C"

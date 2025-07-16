@@ -1,6 +1,6 @@
 SCRIPTS_DIR := ./scripts
 
-.PHONY: help asdf-update-global asdf-backup asdf-restore pm-clean pm-install pm-sync-to-master pm-sync-from-master pm-sync-diff maintenance maint setup-new
+.PHONY: help asdf-update-global asdf-backup asdf-restore install-zsh-plugins pm-clean pm-install pm-sync-to-master pm-sync-from-master pm-sync-diff maintenance maint setup-new
 
 # Default target
 help:
@@ -10,6 +10,9 @@ help:
 	@echo "  asdf-update-global"
 	@echo "  asdf-backup"
 	@echo "  asdf-restore"
+	@echo ""
+	@echo "ZSH Configuration:"
+	@echo "  install-zsh-plugins - Install ZSH plugins to ~/.config/zsh/plugins"
 	@echo ""
 	@echo "Package Manager Management:"
 	@echo "  pm-clean      - Comprehensive package manager cleanup and maintenance"
@@ -47,6 +50,11 @@ asdf-restore:
 asdf-backup:
 	@echo "📦 Running asdf backup..."
 	@$(SCRIPTS_DIR)/asdf-backup.sh
+
+# ZSH Configuration
+install-zsh-plugins:
+	@echo "🔌 Installing ZSH plugins..."
+	@$(SCRIPTS_DIR)/install-zsh-plugins.sh
 
 # Package Manager Management
 pm-clean:
@@ -89,8 +97,6 @@ pm-sync-diff:
 	@echo "🔍 Showing differences between package lists..."
 	@$(SCRIPTS_DIR)/pm-manager.sh sync diff
 
-
-
 # System Maintenance
 maintenance: maint
 maint:
@@ -102,7 +108,12 @@ maint:
 	@echo "🗑️  Running backup file cleanup..."
 	@$(SCRIPTS_DIR)/pm-manager.sh backup-clean
 	@echo "📦 Backing up dotfiles..."
-	@make -C ~/jdots stow-backup
+	@if [ -d "$$HOME/jdots" ] && [ -f "$$HOME/jdots/Makefile" ]; then \
+		echo "✅ Found jdots directory, running stow-backup..."; \
+		make -C ~/jdots stow-backup; \
+	else \
+		echo "⚠️  jdots directory not found at ~/jdots, skipping stow-backup"; \
+	fi
 	@echo "✅ Full system maintenance complete!"
 	# TODO: Fix git prompt interaction when running stow-backup from maintenance
 	# Current issue: read prompt doesn't work in non-interactive make context

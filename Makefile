@@ -45,9 +45,7 @@ stow-add-new:
 stow-deploy:
 	@echo "🚀 Deploying stow packages to ~/.config..."
 	@$(SCRIPTS_DIR)/stow-deploy.sh
-
-
-
+	
 stow-status:
 	@echo "📊 Showing status of stow packages..."
 	@$(SCRIPTS_DIR)/stow-status.sh
