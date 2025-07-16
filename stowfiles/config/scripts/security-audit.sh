@@ -174,15 +174,13 @@ echo -e "\n${BLUE}3. Checking for executable files...${NC}"
 executable_files=0
 while IFS= read -r -d '' file; do
     if [ -f "$file" ]; then
-        # Skip expected executable files, git hooks, zsh plugins, and other legitimate executables
+        # Skip expected executable files, git hooks, and forgit plugin executables
         if [[ "$file" == *.sh ]] || [[ "$file" == *.py ]] || [[ "$file" == *.pl ]] || \
            [[ "$file" == */.git/hooks/*.sample ]] || [[ "$file" == */bin/* ]] || \
            [[ "$file" == */run-tests.zsh ]] || [[ "$file" == */test-*.zsh ]] || \
            [[ "$file" == */generate.zsh ]] || [[ "$file" == */tap-* ]] || \
            [[ "$file" == */edit-failed-tests ]] || [[ "$file" == */test-zprof.zsh ]] || \
-           [[ "$file" == */forgit/forgit.plugin.zsh ]] || [[ "$file" == */forgit/completions/git-forgit.bash ]] || \
-           [[ "$file" == */plugins/* ]] || [[ "$file" == *.bats ]] || \
-           [[ "$file" == */git-open ]] || [[ "$file" == */git-* ]]; then
+           [[ "$file" == */forgit/forgit.plugin.zsh ]] || [[ "$file" == */forgit/completions/git-forgit.bash ]]; then
             continue
         fi
         if [ -x "$file" ]; then
@@ -220,8 +218,8 @@ if [ -f "$REPO_ROOT/.gitignore" ]; then
         ((warnings_found++))
     fi
 else
-    print_warning ".gitignore file missing (OK for dotfiles in ~/.config)"
-    ((warnings_found++))
+    print_status 1 ".gitignore file missing"
+    ((issues_found++))
 fi
 
 echo -e "\n${BLUE}5. Checking for large files...${NC}"
@@ -277,7 +275,7 @@ while IFS= read -r -d '' file; do
         # Skip expected safe hidden files
         if [[ "$filename" == .* ]] && \
            [[ "$filename" != ".gitignore" ]] && [[ "$filename" != ".stow-local-ignore" ]] && \
-           [[ "$filename" != ".zshrc"* ]] && [[ "$filename" != ".bashrc" ]] && [[ "$filename" != ".aliases" ]] && \
+           [[ "$filename" != ".zshrc" ]] && [[ "$filename" != ".bashrc" ]] && [[ "$filename" != ".aliases" ]] && \
            [[ "$filename" != ".gitmodules" ]] && [[ "$filename" != ".editorconfig" ]] && \
            [[ "$filename" != ".gitattributes" ]] && [[ "$filename" != ".version" ]] && \
            [[ "$filename" != ".revision-hash" ]] && [[ "$filename" != ".pre-commit-config.yaml" ]] && \
@@ -288,14 +286,12 @@ while IFS= read -r -d '' file; do
            # Shell history and cache files (should be ignored by git)
            [[ "$filename" != ".zsh_history" ]] && [[ "$filename" != ".bash_history" ]] && \
            [[ "$filename" != ".zcompdump"* ]] && [[ "$filename" != ".z" ]] && \
-           # Backup files (common patterns)
-           [[ "$filename" != *.backup ]] && [[ "$filename" != *.bak ]] && \
-           [[ "$filename" != *".backup" ]] && [[ "$filename" != *".bak" ]] && \
+           # Backup files
+           [[ "$filename" != "*.backup" ]] && [[ "$filename" != "*.bak" ]] && \
            # NPM and package manager files
            [[ "$filename" != ".npmignore" ]] && [[ "$filename" != ".zunit.yml" ]] && \
            # Editor and IDE files
            [[ "$filename" != ".history" ]] && [[ "$filename" != ".vscode" ]] && \
-           [[ "$filename" != ".neoconf.json" ]] && \
            # Plugin and tool specific files
            [[ "$filename" != ".stow-local-ignore" ]] && [[ "$filename" != ".stow-local-ignore~" ]]; then
             echo -e "${YELLOW}  Warning: Hidden file found: $file${NC}"

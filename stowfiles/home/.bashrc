@@ -6,4 +6,4 @@ if [[ -f ~/.config/bash/.bashrc ]]; then
     source ~/.config/bash/.bashrc
 else
     echo "Warning: ~/.config/bash/.bashrc not found"
-fi
+fi 

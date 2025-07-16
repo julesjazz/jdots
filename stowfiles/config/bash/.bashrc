@@ -11,6 +11,13 @@ esac
 # Homebrew PATH setup
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# ASDF version manager setup
+. "$HOME/.asdf/asdf.sh"
+# Add ASDF completions
+if [ -f "$HOME/.asdf/completions/asdf.bash" ]; then
+    . "$HOME/.asdf/completions/asdf.bash"
+fi
+
 # XDG Base Directory specification
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -30,9 +37,12 @@ HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 
 # Clean timestamped history entries from zsh sessions
-if [[ -f "$HISTFILE" ]]; then
-    sed -i.backup 's/^: [0-9]*:[0-9]*;//' "$HISTFILE" 2>/dev/null
-fi
+# if [[ -f "$HISTFILE" ]]; then
+#     sed -i.backup 's/^: [0-9]*:[0-9]*;//' "$HISTFILE" 2>/dev/null
+# fi
+# alias a filter instead:
+alias history='history | sed "s/^\([ 0-9]*\): [0-9]*:[0-9]*;/\1 /"'
+
 
 # Additional bash-specific history settings
 # histreedit = re-edit a failed history substitution (equivalent to HIST_VERIFY)
@@ -153,6 +163,7 @@ export PATH
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
+alias rm='rm -i' # rm plugin used by zsh
 
 # Source shared aliases if they exist
 if [[ -f ~/.config/.aliases ]]; then
@@ -164,4 +175,5 @@ elif [[ -f ~/.aliases ]]; then
 fi
 
 # Starship
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init bash)"
