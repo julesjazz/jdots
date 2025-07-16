@@ -15,13 +15,19 @@ restore() {
     [[ -d "$dir" ]] || continue
     name="$(basename "$dir")"
 
-    # Avoid overwriting plugins in ~/.config/zsh
-    if [[ "$target" == "$HOME/.config" && "$name" == "zsh" ]]; then
-      echo "♻️  Restoring $name (excluding plugins/) to $target"
-      rsync -a --exclude-from=.rsyncignore "$dir" "$target/"
+    # Special handling for config-root - restore contents directly to ~/.config
+    if [[ "$target" == "$HOME/.config" && "$name" == "config-root" ]]; then
+      echo "♻️  Restoring $name contents directly to $target"
+      rsync -a --exclude-from=.rsyncignore "$dir"/ "$target/"
+    # Avoid overwriting plugins in ~/.config/zsh  
+    elif [[ "$target" == "$HOME/.config" && "$name" == "zsh" ]]; then
+      echo "♻️  Restoring $name (excluding plugins/) to $target/$name"
+      mkdir -p "$target/$name"
+      rsync -a --exclude-from=.rsyncignore --exclude="plugins/" "$dir"/ "$target/$name/"
     else
-      echo "♻️  Restoring $name to $target"
-      rsync -a --exclude-from=.rsyncignore "$dir" "$target/"
+      echo "♻️  Restoring $name to $target/$name"
+      mkdir -p "$target/$name"
+      rsync -a --exclude-from=.rsyncignore "$dir"/ "$target/$name/"
     fi
   done
 }

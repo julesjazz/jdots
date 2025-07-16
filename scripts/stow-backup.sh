@@ -12,27 +12,59 @@ echo -e "\n🔒  \033[1;34mRunning security audit on source directories...\033[0
 
 STOW_DIR="stowfiles"
 
+sanitize_files() {
+  echo "🧹  Sanitizing email addresses and sensitive info..."
+  
+  # Sanitize git config files
+  for gitconfig in "$STOW_DIR/config/git/gitconfig" "$STOW_DIR/home/.gitconfig"; do
+    if [[ -f "$gitconfig" ]]; then
+      echo "  📧  Sanitizing $gitconfig"
+      # Replace email addresses with placeholder
+      sed -i.bak 's/email = [^@]*@[^[:space:]]*/email = user@domain.com/g' "$gitconfig"
+      # Replace real names with placeholder
+      sed -i.bak 's/name = .*/name = Your Name/g' "$gitconfig"
+      # Fix hardcoded paths to use portable config paths
+      sed -i.bak 's|excludesfile = /Users/[^/]*/\.gitignore_global|excludesfile = ~/.config/git/gitignore|g' "$gitconfig"
+      sed -i.bak 's|excludesfile = ~/.gitignore_global|excludesfile = ~/.config/git/gitignore|g' "$gitconfig"
+      # Remove backup file
+      rm -f "$gitconfig.bak"
+    fi
+  done
+  
+  # Sanitize hardcoded user paths in all config files
+  echo "  🏠  Sanitizing hardcoded user paths..."
+  find "$STOW_DIR" -type f \( -name "*.config" -o -name "config" -o -name "*.conf" -o -name "*.toml" -o -name "*.yaml" -o -name "*.yml" \) -exec grep -l "/Users/[^/]*" {} \; 2>/dev/null | while read -r file; do
+    echo "    🏠  Sanitizing paths in $file"
+    sed -i.bak 's|/Users/[^/]*/|/Users/username/|g' "$file"
+    rm -f "$file.bak"
+  done
+  
+  # Sanitize any other config files that might contain email addresses
+  find "$STOW_DIR" -type f \( -name "*.conf" -o -name "*.config" -o -name "*.json" -o -name "*.yaml" -o -name "*.yml" \) -exec grep -l "@" {} \; 2>/dev/null | while read -r file; do
+    echo "  📧  Sanitizing emails in $file"
+    sed -i.bak 's/[a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]*\.[a-zA-Z]{2,}/user@domain.com/g' "$file"
+    rm -f "$file.bak"
+  done
+}
+
 backup_config() {
   local src="$HOME/.config"
   local dest="$STOW_DIR/config"
   mkdir -p "$dest"
 
-  # Backup individual files at the root of ~/.config
-  echo "📝  Backing up config root files → $dest/config-root"
+  # Files that should go in config-root (directly in ~/.config)
+  local config_root_files=(".aliases" ".gitignore" ".stow-local-ignore" "Makefile")
   mkdir -p "$dest/config-root"
   
-  for file in .aliases .gitignore Makefile; do
-    src_file="$src/$file"
-    if [[ -f "$src_file" ]]; then
-      echo "  📄  Backing up $file"
-      # Use cp instead of rsync for these specific files to avoid .rsyncignore conflicts
-      cp "$src_file" "$dest/config-root/"
-    else
-      echo "  ⚠️  Skipping $file — not found in \$HOME/.config"
+  for file in "${config_root_files[@]}"; do
+    if [[ -f "$src/$file" ]]; then
+      echo "📝  Backing up $file → $dest/config-root/"
+      rsync -a --exclude-from=.rsyncignore \
+        "$src/$file" "$dest/config-root/"
     fi
   done
 
-  # Backup directories
+  # Backup directories normally
   for dir in "$src"/*/; do
     [[ -d "$dir" ]] || continue
     name="$(basename "$dir")"
@@ -65,6 +97,10 @@ backup_home() {
 
 backup_config
 backup_home
+
+# Sanitize sensitive information
+echo -e "\n🔒  \033[1;34mSanitizing sensitive information...\033[0m"
+sanitize_files
 
 echo -e "\n✅  \033[1;32mBackup complete!\033[0m"
 

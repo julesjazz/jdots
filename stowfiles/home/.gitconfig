@@ -1,5 +1,8 @@
-# Point to .config/git
-[include]
-    path = ~/.config/git/gitconfig
-[core]
-    excludesFile = ~/.config/git/gitignore
+[user]
+	name = Your Name
+	email = user@domain.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

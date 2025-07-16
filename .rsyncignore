@@ -20,6 +20,7 @@ spell/
 
 # Shell history and state files
 .history
+.z
 .zcompdump*
 .zsh_history
 .netrwhist

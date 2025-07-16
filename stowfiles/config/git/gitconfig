@@ -1,11 +1,11 @@
 [user]
 	# signingkey = REMOVED_FOR_SECURITY
-	name = Julia Silver
-	email = [REDACTED]@filevine.com
+	name = Your Name
+	email = user@domain.com
 [color]
 	ui = auto
 [core]
-	excludesfile = /Users/juliasilver/.gitignore_global
+	excludesfile = ~/.config/git/gitignore
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
