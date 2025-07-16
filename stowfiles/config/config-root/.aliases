@@ -1,0 +1,253 @@
+# =============================================================================
+# ALIASES FILE
+# =============================================================================
+# Add to shells with: source ~/.config/.aliases
+# Cross-platform aliases for bash and zsh (fish and nushell may have additional)
+
+# =============================================================================
+# SYSTEM & NAVIGATION
+# =============================================================================
+
+# Directory listing
+alias ll='ls -laFh'                    # Long list with file types and human sizes
+alias la='ls -A'                       # List all files (including hidden)
+alias l='ls -CF'                       # List with file types
+alias lt='ls -laFht'                   # Sort by time, newest first
+alias ltr='ls -laFhtr'                 # Sort by time, oldest first
+
+# Navigation
+alias ..='cd ..'                       # Go up one directory
+alias ...='cd ../..'                   # Go up two directories
+alias ....='cd ../../..'               # Go up three directories
+alias .....='cd ../../../..'           # Go up four directories
+alias c='clear'                        # Clear screen
+
+# =============================================================================
+# FILE & DIRECTORY OPERATIONS
+# =============================================================================
+
+# File operations
+alias mkdir='mkdir -p'                   # Create parent directories if needed
+alias cp='cp -i'                         # Copy with confirmation
+alias mv='mv -i'                         # Move with confirmation
+alias rmi='rm -i'                        # Remove with confirmation
+alias ln='ln -i'                         # Create symlink with confirmation
+alias mkcd='mkdir -p && cd'              # Create directory and enter it
+
+# File viewing
+alias cat='bat'                          # Better cat with syntax highlighting
+alias less='less -R'                     # Read file with color support
+alias more='more -R'                     # Read file with color support
+alias tail='tail -f'                     # Follow file in real-time
+alias head='head -20'                    # Show first 20 lines
+
+# File analysis
+alias wc='wc -l'                         # Count lines
+alias du='du -h'                         # Disk usage (human readable)
+alias dsize='du -sh'                     # Directory size (human readable)
+alias dsize-detail='du -h | sort -h'     # Directory size with detail, sorted
+alias df='df -h'                         # Disk free space (human readable)
+alias lsblk='lsblk -f'                   # List block devices with filesystem info
+alias mount='mount | column -t'          # List mounted filesystems in table format
+
+# Search operations
+alias grep='grep --color=auto --exclude-dir={.git,.svn,.hg}'   # Search with colors, exclude VCS
+alias egrep='egrep --color=auto'                               # Extended grep with colors
+alias fgrep='fgrep --color=auto'                               # Fixed string grep with colors
+alias rg='rg --color=auto'                                     # Ripgrep with colors
+alias fd='fd --color=auto'                                     # Find files with colors
+alias tree='tree -C'                                           # Tree view with colors
+
+# =============================================================================
+# NETWORKING & CONNECTIVITY
+# =============================================================================
+
+# Network information
+alias myip='curl -s https://ipinfo.io/ip'                      # Get public IP address
+alias ping5='ping -c 5'                                       # Ping 5 times
+alias ping25='ping -c 25'                                     # Ping 25 times
+alias ping100='ping -c 100'                                   # Ping 100 times
+alias ping200='ping -c 200'                                   # Ping 200 times
+alias ping500='ping -c 500'                                   # Ping 500 times
+alias ping1k='ping -c 1000'                                   # Ping 1000 times
+alias ping2k='ping -c 2000'                                   # Ping 2000 times
+alias ping5k='ping -c 5000'                                   # Ping 5000 times
+
+# SSH & file transfer
+alias ssh='ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=3'    # SSH with keepalive
+alias scp='scp -o ServerAliveInterval=60 -o ServerAliveCountMax=3'    # SCP with keepalive
+alias rsync='rsync -avz --progress'                                    # Rsync with verbose output and progress
+alias wget='wget -c'                                                   # Wget with continue support
+alias curl='curl -s'                                                   # Silent curl
+alias dig='dig +short'                                                 # DNS lookup (short output)
+alias nslookup='nslookup -type=A'                                      # DNS lookup for A records
+alias traceroute='traceroute -n'                                       # Traceroute without DNS resolution
+
+# =============================================================================
+# DEVELOPMENT & PROGRAMMING
+# =============================================================================
+
+# Language interpreters
+alias py='python3'                                           # Python 3
+alias pip='pip3'                                             # Python 3 package manager
+alias node='node --max-old-space-size=4096'                  # Node.js with increased memory
+alias npm='npm --no-audit'                                   # NPM without audit
+alias yarn='yarn --silent'                                   # Yarn with silent output
+
+# Development tools
+alias vi='nvim'                                              # Use Neovim instead of vim
+alias edit='code'                                            # Open in VS Code
+alias serve='python3 -m http.server'                         # Start local HTTP server
+alias jq='jq -C'                                             # JSON processor with colors
+alias json='python3 -m json.tool'                            # Format JSON
+alias xml='xmllint --format'                                 # Format XML
+
+# =============================================================================
+# GIT VERSION CONTROL
+# =============================================================================
+
+# Git status and info
+alias gs='git status'                                        # Git status
+alias gl='git log --oneline --graph --decorate'              # Git log with graph
+
+# Git operations
+alias ga='git add'                                           # Git add
+alias gc='git commit'                                        # Git commit
+alias gp='git push'                                          # Git push
+alias gco='git checkout'                                     # Git checkout
+alias gcb='git checkout -b'                                  # Git checkout new branch
+alias gd='git diff'                                          # Git diff
+alias gdc='git diff --cached'                                # Git diff staged changes
+
+# =============================================================================
+# AWS CLOUD SERVICES
+# =============================================================================
+
+# AWS CLI with different outputs
+alias aws='$(asdf where awscli)/bin/aws --output table'                                    # AWS with table output
+alias awsj='$(asdf where awscli)/bin/aws --output json'                                    # AWS with JSON output
+alias awsy='$(asdf where awscli)/bin/aws --output yaml'                                    # AWS with YAML output
+
+# AWS identity and regions
+alias aws-whoami='aws sts get-caller-identity'                                             # Get current AWS identity
+alias aws-regions='aws ec2 describe-regions --query "Regions[].RegionName" --output table' # List AWS regions
+
+# AWS resources
+alias aws-instances='aws ec2 describe-instances --query "Reservations[].Instances[].{ID:InstanceId,Type:InstanceType,State:State.Name,IP:PublicIpAddress}" --output table' # List EC2 instances
+alias aws-buckets='aws s3 ls'                                                              # List S3 buckets
+alias aws-lambda='aws lambda list-functions --query "Functions[].{Name:FunctionName,Runtime:Runtime,Memory:MemorySize}" --output table' # List Lambda functions
+alias aws-ecr='aws ecr describe-repositories --query "repositories[].{Name:repositoryName,URI:repositoryUri}" --output table' # List ECR repositories
+
+# =============================================================================
+# SYSTEM MONITORING & PROCESSES
+# =============================================================================
+
+# Process management
+alias top='htop'                                             # Use htop instead of top
+alias mem='free -h'                                          # Memory usage (human readable)
+alias disk='df -h'                                           # Disk usage (human readable)
+alias speed='speedtest-cli'                                  # Internet speed test
+
+# =============================================================================
+# TIME & DATE UTILITIES
+# =============================================================================
+
+# Current time and date
+alias now='date'                                             # Current date and time
+alias today='date +%Y-%m-%d'                                 # Today's date (YYYY-MM-DD)
+alias time='date +%H:%M:%S'                                  # Current time (HH:MM:SS)
+alias datetime='date +"%Y-%m-%d %H:%M:%S"'                   # Date and time formatted
+alias timestamp='date +%s'                                   # Unix timestamp
+alias utc='date -u'                                          # UTC date and time
+alias epoch='date +%s'                                       # Unix epoch timestamp
+alias iso='date -Iseconds'                                   # ISO 8601 format
+alias rfc='date -R'                                          # RFC 2822 format
+
+# Calendar and time components
+alias cal='cal -3'                                           # Calendar (3 months)
+alias calyear='cal -y'                                       # Calendar for entire year
+alias week='date +%V'                                        # Current week number
+alias day='date +%A'                                         # Current day name
+alias month='date +%B'                                       # Current month name
+alias year='date +%Y'                                        # Current year
+
+# =============================================================================
+# DOTFILES MANAGEMENT
+# =============================================================================
+
+# Stow configuration management
+alias dots-backup='cd ~/jdots && make stow-backup'           # Backup .config files to stow packages
+alias dots-restore='cd ~/jdots && make stow-restore'         # Restore .config files from stow packages
+alias dots-add='cd ~/jdots && make stow-add-new'             # Add new .config directories to stow packages
+alias dots-deploy='cd ~/jdots && make stow-deploy'           # Deploy stow packages to ~/.config
+alias dots-clean='cd ~/jdots && make stow-clean'             # Clean up stow packages (remove symlinks)
+alias dots-status='cd ~/jdots && make stow-status'           # Show status of stow packages
+alias dots-deps='cd ~/jdots && make stow-install-deps'       # Install dependencies for dotfiles
+
+# System maintenance
+alias maint='cd ~/.config && make maintenance'               # Full system maintenance (security + package cleanup + stow backup)
+
+# New computer setup
+# alias dots-setup='cd ~/jdots && make setup-new'              # Complete setup for new computer
+
+# Security
+alias dots-audit='cd ~/jdots && make security-audit'         # Run security audit on repository
+alias dots-help='cd ~/jdots && make help'                    # Show dotfiles help
+
+# =============================================================================
+# SYSTEM INFORMATION (macOS)
+# =============================================================================
+
+# Hardware information
+alias cpu='sysctl -n machdep.cpu.brand_string'                # CPU model
+alias cores='sysctl -n hw.ncpu'                               # Number of CPU cores
+alias memory='sysctl -n hw.memsize | awk "{print \$0/1024/1024/1024 \" GB\"}"' # Total memory in GB
+alias temp='sudo powermetrics --samplers smc -n1 | grep "CPU die temperature"' # CPU temperature
+
+# Operating system
+alias os='sw_vers -productName'                               # macOS product name
+alias osver='sw_vers -productVersion'                         # macOS version
+alias build='sw_vers -buildVersion'                           # macOS build version
+
+# Network and system
+alias hostname='hostname -s'                                   # Short hostname
+alias fqdn='hostname -f'                                       # Full hostname
+alias ip='ifconfig | grep "inet " | grep -v 127.0.0.1'        # Local IP addresses
+alias mac='ifconfig | grep ether'                             # MAC addresses
+alias wifi='networksetup -getairportpower en0'                # WiFi power status
+alias battery='pmset -g batt'                                  # Battery status
+alias users='who | wc -l'                                      # Number of logged-in users
+alias processes='ps aux | wc -l'                               # Number of running processes
+
+# =============================================================================
+# DOCKER CONTAINERS (commented out - uncomment as needed)
+# =============================================================================
+
+# alias dps='docker ps'                                       # List running containers
+# alias dpa='docker ps -a'                                    # List all containers
+# alias di='docker images'                                    # List Docker images
+# alias drm='docker rm'                                       # Remove container
+# alias drmi='docker rmi'                                     # Remove image
+# alias dex='docker exec -it'                                 # Execute command in container
+# alias dlogs='docker logs'                                   # Show container logs
+# alias dstop='docker stop'                                   # Stop container
+# alias drun='docker run'                                     # Run container
+# alias dbuild='docker build'                                 # Build Docker image
+
+# =============================================================================
+# KUBERNETES (commented out - uncomment as needed)
+# =============================================================================
+
+# alias k='kubectl'                                           # Kubectl shorthand
+# alias kg='kubectl get'                                      # Get resources
+# alias kd='kubectl describe'                                 # Describe resources
+# alias kl='kubectl logs'                                     # Show pod logs
+# alias ke='kubectl exec -it'                                 # Execute command in pod
+# alias kdp='kubectl delete pod'                              # Delete pod
+# alias kds='kubectl delete service'                          # Delete service
+# alias kdn='kubectl delete namespace'                        # Delete namespace
+# alias kaf='kubectl apply -f'                                # Apply from file
+# alias kdf='kubectl delete -f'                               # Delete from file
+# alias kctx='kubectl config use-context'                     # Switch context
+# alias kgctx='kubectl config get-contexts'                   # List contexts
+# alias kns='kubectl config set-context --current --namespace' # Set namespace

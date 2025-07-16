@@ -1,3 +1,7 @@
+# this was created in an attempt to get stow/rsync to exclude desired directory files correctly, it may not be working but keeping as a reference, it may be best to add exclusions to .gitignore on until a better stow/rsync filter can be devised
+# TODO: fix rsyncignore in scripts if possible 
+# eg: rsync -a --delete --exclude-from=.rsyncignore ~/.config/logs/ stowfiles/config/logs/
+
 # Ignore all files in logs directories (keep directory structure)
 logs/*
 

@@ -17,6 +17,23 @@ backup_config() {
   local dest="$STOW_DIR/config"
   mkdir -p "$dest"
 
+  # Backup individual files at the root of ~/.config
+  echo "📝  Backing up config root files → $dest/config-root"
+  mkdir -p "$dest/config-root"
+  
+  for file in .aliases .gitignore Makefile; do
+    src_file="$src/$file"
+    if [[ -f "$src_file" ]]; then
+      echo "  📄  Backing up $file"
+      rsync -a --delete \
+        --exclude-from=.rsyncignore \
+        "$src_file" "$dest/config-root/"
+    else
+      echo "  ⚠️  Skipping $file — not found in \$HOME/.config"
+    fi
+  done
+
+  # Backup directories
   for dir in "$src"/*/; do
     [[ -d "$dir" ]] || continue
     name="$(basename "$dir")"

@@ -1,0 +1,2 @@
+# Stow ignore file for config-root
+# This ensures only the specific files are stowed, not the directory itself 
