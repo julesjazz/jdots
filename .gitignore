@@ -149,3 +149,17 @@ stowfiles/**/cache/
 stowfiles/**/tmp/
 stowfiles/**/temp/
 **/logs/*
+
+# ZSH plugin content (keep folder structure but exclude plugin files)
+stowfiles/**/plugins/*/*.zsh
+stowfiles/**/plugins/*/*.plugin.zsh
+stowfiles/**/plugins/*/*.sh
+stowfiles/**/plugins/*/README*
+stowfiles/**/plugins/*/LICENSE*
+stowfiles/**/plugins/*/.git/
+stowfiles/**/plugins/*/docs/
+stowfiles/**/plugins/*/test/
+stowfiles/**/plugins/*/tests/
+
+# ZSH sessions (exclude completely)
+**/.zsh_sessions/

@@ -25,6 +25,20 @@ spell/
 .zsh_history
 .netrwhist
 
+# ZSH plugin content (keep folder structure but exclude plugin files)
+plugins/*/*.zsh
+plugins/*/*.plugin.zsh
+plugins/*/*.sh
+plugins/*/README*
+plugins/*/LICENSE*
+plugins/*/.git/
+plugins/*/docs/
+plugins/*/test/
+plugins/*/tests/
+
+# ZSH sessions (exclude completely)
+.zsh_sessions/
+
 # Editor backup files
 *~
 *.backup
