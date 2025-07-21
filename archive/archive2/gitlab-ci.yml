@@ -1,0 +1,14 @@
+stages:
+  - security
+
+gitleaks-audit:
+  image: zricethezav/gitleaks:latest
+  stage: security
+  script:
+    - echo "🔐 Running gitleaks security audit..."
+    - gitleaks detect --source=. --report-format=table --config=gitleaks.toml
+  only:
+    - merge_requests
+    - branches
+  except:
+    - tags

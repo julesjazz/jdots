@@ -1,0 +1,22 @@
+name: 🔐 Security Audit
+# this exists until the project is migrated to gitlab
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  gitleaks-audit:
+    name: Run Gitleaks Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🛡️ Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          config-path: gitleaks.toml
+          report-format: table

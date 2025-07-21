@@ -1,0 +1,141 @@
+# Bash-specific aliases that extend the shared aliases
+# This file is sourced after the shared aliases and contains bash-only additions
+
+# =============================================================================
+# BASH-SPECIFIC ALIASES
+# =============================================================================
+# These aliases are specific to bash and extend the shared aliases
+
+# =============================================================================
+# BASH HISTORY & NAVIGATION
+# =============================================================================
+
+# History search with fzf (bash-specific)
+alias h='history | fzf'
+alias hg='history | grep'
+
+# Directory stack shortcuts
+alias pd='pushd'
+alias pop='popd'
+alias dirs='dirs -v'
+
+# =============================================================================
+# BASH UTILITIES
+# =============================================================================
+
+# Reload bash configuration
+alias reload-bash='source ~/.bashrc'
+
+# =============================================================================
+# GIT ALIASES (Bash-specific)
+# =============================================================================
+
+# Git status and info
+alias gs='git status'
+alias gl='git log --oneline --graph --decorate'
+alias gla='git log --oneline --graph --decorate --all'
+
+# Git operations
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gpl='git pull'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gst='git stash'
+alias gstp='git stash pop'
+
+# Git branch management
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbD='git branch -D'
+alias gbm='git branch -m'
+
+# Git remote operations
+alias gr='git remote'
+alias gra='git remote add'
+alias grv='git remote -v'
+alias grb='git rebase'
+alias grbi='git rebase -i'
+
+# Git configuration
+alias gcf='git config --list'
+alias gcfg='git config --global --list'
+
+# =============================================================================
+# DOCKER ALIASES (Bash-specific)
+# =============================================================================
+
+# Docker container management
+alias dps='docker ps'
+alias dpa='docker ps -a'
+alias di='docker images'
+alias drm='docker rm'
+alias drmi='docker rmi'
+alias dst='docker stop'
+alias dstp='docker start'
+alias dex='docker exec -it'
+alias dlogs='docker logs'
+alias dtop='docker top'
+
+# Docker compose
+alias dc='docker-compose'
+alias dcup='docker-compose up'
+alias dcdown='docker-compose down'
+alias dcb='docker-compose build'
+alias dcr='docker-compose restart'
+
+# Docker system
+alias dsys='docker system'
+alias dprune='docker system prune'
+alias ddf='docker system df'
+alias dvol='docker volume ls'
+
+# Docker build and run
+alias db='docker build'
+alias dr='docker run'
+alias dri='docker run -it'
+alias drd='docker run -d'
+
+# =============================================================================
+# AWS ALIASES (Bash-specific)
+# =============================================================================
+
+# AWS CLI shortcuts
+alias aws='aws'
+alias awsj='aws --output json'
+alias awsy='aws --output yaml'
+alias awst='aws --output table'
+
+# AWS identity and access
+alias aws-whoami='aws sts get-caller-identity'
+alias aws-account='aws sts get-caller-identity --query "Account" --output text'
+alias aws-user='aws sts get-caller-identity --query "Arn" --output text'
+
+# AWS regions and configuration
+alias aws-regions='aws ec2 describe-regions --query "Regions[].RegionName" --output table'
+alias aws-region='aws configure get region'
+alias aws-profile='aws configure get profile'
+
+# AWS EC2
+alias aws-instances='aws ec2 describe-instances --query "Reservations[].Instances[].{ID:InstanceId,Type:InstanceType,State:State.Name,IP:PublicIpAddress}" --output table'
+alias aws-instance='aws ec2 describe-instances --instance-ids'
+
+# AWS S3
+alias aws-buckets='aws s3 ls'
+alias aws-s3ls='aws s3 ls'
+alias aws-s3cp='aws s3 cp'
+alias aws-s3sync='aws s3 sync'
+
+# AWS Lambda
+alias aws-lambda='aws lambda list-functions --query "Functions[].{Name:FunctionName,Runtime:Runtime,LastModified:LastModified}" --output table'
+
+# AWS ECR
+alias aws-ecr='aws ecr describe-repositories --query "repositories[].{Name:repositoryName,URI:repositoryUri}" --output table'
+
+# AWS CloudWatch
+alias aws-logs='aws logs describe-log-groups --query "logGroups[].{Name:logGroupName,StoredBytes:storedBytes}" --output table'

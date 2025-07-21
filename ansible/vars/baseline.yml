@@ -1,0 +1,47 @@
+## -- note always available vars: -- ##
+# playbook_dir
+# ansible_os_family
+# ansible_architecture
+# ansible_user
+# ansible_env.HOME # user's home directory ~
+# ansible_env.PATH
+# ansible_env.SHELL
+# ansible_env.TERM
+# ansible_env.USER
+# ansible_env.LANG
+# ansible_env.LC_ALL
+# ansible_env.TZ
+# ansible_distribution
+# ansible_distribution_version
+# ansible_distribution_major_version
+# ansible_machine
+# ansible_processor
+# ansible_processor_cores
+# ansible_memtotal_mb
+# ansible_connection
+# ansible_hostname
+# ansible_fqdn
+# ansible_domain
+
+# -- Directory Structure --
+# assume the ansible dir will always be [dotsrepo]/ansible
+dots_path: "{{ playbook_dir | dirname }}/.."
+repo_name: "{{ dots_path | basename }}"
+shells_path: "{{ config_path }}/shells"
+config_path: "{{ ansible_env.HOME }}/.config"
+dots_config_path: "{{ dots_path }}/.config"
+
+# -- Logging --
+logs_path: "{{ dots_path }}/logs"
+logs_file: "{{ logs_path }}/{{ ansible_play_name }}-{{ ansible_date_time.epoch }}.log"
+logs_max_size: "10MB"
+logs_retention_days: 30
+logs_level: "INFO"
+
+# -- Network --
+internet_check_url: "https://ipinfo.io/ip"
+internet_check_timeout: 10
+
+# -- Permissions --
+config_dir_mode: '0755'
+config_file_mode: '0644'

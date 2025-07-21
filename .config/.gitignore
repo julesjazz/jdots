@@ -1,0 +1,29 @@
+# Failsafe gitignore to add to backup ignore
+# Ignore compiled, temporary, and backup files
+*.bak
+*.tmp
+*.swp
+*.swo
+*~
+
+# ZSH and Bash
+*/*.zsh_sessions
+*/plugins/*
+.zsh_history
+.zcompdump
+.z
+.bash_history
+.history*
+
+# temp and logs
+*/temp/*
+*/logs/*
+
+# tldr / tealdeer
+*/tldr/tldr/pages/*
+!*/tldr/config.toml
+
+# env files
+
+# 1Password
+*/op/*

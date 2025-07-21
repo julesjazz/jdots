@@ -1,0 +1,6 @@
+# Zsh-specific aliases only
+alias zsh-version='zsh --version'
+alias zsh-features='echo $ZSH_VERSION; echo $ZSH_OPTIONS'
+alias reload-zsh='source ~/.zshrc'
+alias zsh-debug='setopt XTRACE'
+alias zsh-nodebug='unsetopt XTRACE'

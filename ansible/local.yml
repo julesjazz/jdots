@@ -1,0 +1,185 @@
+# ansible/local.yml
+
+- name: Apply baseline profile
+  hosts: localhost
+  become: true
+  gather_facts: true
+
+  # local.yml intended to be baseline config for all deploys
+  # symlinked to ansible/baseline.yml
+  # not to be confused with vars/baseline.yml
+  # tasks order:
+  # - check for first-time setup marker
+  # - ensure ~/.config exists
+  # - deploy dotfiles root items to ~/.config
+  # - backup and symlink shell rc files
+  # - check internet connectivity
+  # - install zsh, zsh plugins, starship, and tldr tools if internet is available
+  # - install core productivity CLI tools
+  # - set zsh as default shell
+  # - record playbook completion timestamp
+  # - print install success summary
+
+  vars_files:
+    - vars/baseline.yml
+    - vars/shells.yml
+
+  tasks:
+
+    - name: Check for first-time setup marker
+      stat:
+        path: "{{ config_path }}/.first_run_complete"
+      register: first_run_check
+
+    - name: Create first-time marker
+      file:
+        path: "{{ config_path }}/.first_run_complete"
+        state: touch
+      when: not first_run_check.stat.exists
+      tags: [meta]
+
+    - name: Ensure ~/.config exists
+      file:
+        path: "{{ config_path }}"
+        state: directory
+        mode: "{{ config_dir_mode }}"
+
+    - name: Deploy dotfiles root items to ~/.config
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ config_path }}/{{ item.dest | default(item.src | basename) }}"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: "{{ config_file_mode }}"
+      loop:
+        - { src: "{{ dots_path }}/scripts", dest: "scripts" }
+        - { src: "{{ dots_path }}/Makefile" }
+        - { src: "{{ dots_path }}/README.md" }
+        - { src: "{{ dots_path }}/.gitignore" }
+      tags: [baseline, dotfiles]
+
+    - name: Backup and symlink shell rc files
+      block:
+        - name: Backup existing rc file if it exists
+          copy:
+            src: "{{ ansible_env.HOME }}/{{ item.dest }}"
+            dest: "{{ ansible_env.HOME }}/{{ item.dest }}.bak"
+            remote_src: true
+          ignore_errors: true
+
+        - name: Create symlink to managed config
+          file:
+            src: "{{ shells_path }}/{{ item.src }}"
+            dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+            state: link
+            force: true
+      loop:
+        - { src: "zsh/.zshrc", dest: ".zshrc" }
+        - { src: "bash/.bashrc", dest: ".bashrc" }
+      loop_control:
+        label: "{{ item.dest }}"
+      tags: [baseline, shells]
+
+    - name: Check internet connectivity
+      uri:
+        url: "{{ internet_check_url }}"
+        method: HEAD
+        timeout: "{{ internet_check_timeout }}"
+        status_code: 200
+      register: internet_check
+      failed_when: false
+      changed_when: false
+      tags: [network]
+
+    - name: Install Zsh, Zsh plugins, Starship, and TLDR tools if internet is available
+      block:
+
+        - name: Install Zsh if missing (Linux only)
+          package:
+            name: zsh
+            state: present
+          when: ansible_os_family != 'Darwin'
+
+        - name: Ensure Zsh plugin directory exists
+          file:
+            path: "{{ zsh_config_path }}/plugins"
+            state: directory
+            mode: "{{ config_dir_mode }}"
+
+        - name: Install Zsh plugins
+          git:
+            repo: "{{ item.repo }}"
+            dest: "{{ zsh_config_path }}/plugins/{{ item.name }}"
+            update: yes
+          loop: "{{ zsh_plugins }}"
+
+        - name: Check if Starship is installed
+          command: which starship
+          register: starship_check
+          failed_when: false
+          changed_when: false
+
+        - name: Install Starship if missing
+          shell: curl -sS https://starship.rs/install.sh | sh -s -- -y
+          args:
+            executable: /bin/bash
+          when: starship_check.rc != 0
+
+        - name: Deploy Starship config
+          copy:
+            src: "{{ shells_path }}/starship/starship.toml"
+            dest: "{{ config_path }}/starship.toml"
+            mode: "{{ config_file_mode }}"
+
+        - name: Ensure TLDR config directory exists
+          file:
+            path: "{{ shells_path }}/tldr"
+            state: directory
+            mode: "{{ config_dir_mode }}"
+
+        - name: Install tealdeer (TLDR client)
+          shell: |
+            if ! command -v tldr >/dev/null; then
+              curl -s https://dbrgn.github.io/tealdeer/install.sh | bash
+            fi
+          args:
+            executable: /bin/bash
+
+      when: internet_check.status == 200
+      tags: [network, zsh, starship, tldr]
+
+    - name: Install core productivity CLI tools
+      package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ cli_baseline_tools }}"
+      tags: [core, tools]
+
+    - name: Set zsh as default shell
+      user:
+        name: "{{ ansible_user }}"
+        shell: "{{ '/opt/homebrew/bin/zsh' if ansible_os_family == 'Darwin' else '/bin/zsh' }}"
+      tags: [zsh]
+
+    - name: Ensure log directory exists
+      file:
+        path: "{{ config_path }}/logs"
+        state: directory
+        mode: "{{ config_dir_mode }}"
+      tags: [logging]
+
+    - name: Record playbook completion timestamp
+      lineinfile:
+        path: "{{ config_path }}/logs/install.log"
+        create: yes
+        line: "✔️  Install completed on {{ ansible_date_time.date }} {{ ansible_date_time.time }} by {{ ansible_user }}"
+      tags: [logging]
+    
+    - name: Print install success summary
+      debug:
+        msg: |
+          ✅ Baseline environment setup complete.
+          🔗 Config deployed to: {{ config_path }}
+          📦 CLI tools installed
+          🌐 Network-dependent features: {{ '✅ OK' if internet_check.status == 200 else '❌ Skipped' }}
+          📄 Install log: {{ config_path }}/logs/install.log

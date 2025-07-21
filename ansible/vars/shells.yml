@@ -1,0 +1,19 @@
+# ansible/vars/shells.yml
+
+zsh_config_path: "{{ shells_path }}/zsh"
+bash_config_path: "{{ shells_path }}/bash"
+starship_config_path: "{{ shells_path }}/starship"
+
+# -- Zsh Plugins --
+zsh_plugins:
+  - name: zsh-autosuggestions
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+  - name: zsh-syntax-highlighting
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting
+  - name: zsh-history-substring-search
+    repo: https://github.com/zsh-users/zsh-history-substring-search
+
+# TLDR (tealdeer) config options (expand as needed)
+tldr_config:
+  cache_dir: "{{ shells_path }}/tldr/cache"
+  config_file: "{{ shells_path }}/tldr/config.toml"

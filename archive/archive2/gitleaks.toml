@@ -1,0 +1,30 @@
+title = "gitleaks security check config"
+
+[allowlist]
+# Ignore specific paths
+paths = [
+#   "core/zsh/plugins",  # ignore plugin dirs, should be filtered
+  "./core/temp/*",  # skip temp files
+  "./archive/*",
+  "./notes/*",
+  "./scripts/filters/*",
+  "./.git/*",
+]
+files = [
+  "./core/scripts/security/security-audit.sh",  # noisy file
+  "./core/nvim/lazy-lock.json",
+  "./scripts/filters/redact.patterns",
+  "./profile.env",
+  "./profile.env.temp",
+  "./core/nvim/lazy-lock.json", # todo: filter this later
+  "./scripts/security/security-audit.sh",
+]
+
+# Allow specific commits, files, or regexes
+regexes = [
+  '''AKIA[A-Z0-9]{16}''', # AWS key false positives
+]
+
+# Git ignore-style globs can also work
+# e.g., skip everything in logs/
+# paths = ["logs/*"]

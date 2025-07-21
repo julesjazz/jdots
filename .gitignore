@@ -1,165 +1,175 @@
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# === Manually Entered ===
+.ansible
+tldr-pages/*
+zsh/plugins/*
+.zsh_history
+.z
+.zcompdump
+.z
+.bash_history
+.history*
+logs/*
 
-# Editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Temporary files
-*.tmp
-*.temp
-*.log
-
-# Security - Credentials and keys
+# === General Secrets ===
+*.pem
 *.key
-*.pem
-*.p12
 *.crt
-*.pem
-id_rsa*
+*.csr
+*.der
+*.p12
+*.pub
+*.enc
+*.jwk
+*.token
+*.pfx
+*.srl
+*.vault.*
+*.bak
+*.old
+*.swp
 *.env
-.env*
+.env.*
 .secrets/
 .secret*
+
+# === AWS CLI & SDKs ===
+.aws/
+*.awsprofile
+credentials.csv  # from IAM Console
+.aws-sam/
+cdk.out/
+.sagemaker/
+
+# === Azure CLI ===
+.azure/
+azureProfile.json
 accessTokens.json
+*.azureprofile
 *.azurepubkeys
-credentials.json
-token.json
-config.json
 
-# Cache directories
-.cache/
-*.cache
+# === Terraform ===
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*.tfplan
 
-# Node.js (if any)
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Python (if any)
+# === Python (3.13.5) ===
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
+*.pyo
+*.pyd
+.python_history
+*.egg-info/
+.eggs/
+pip-log.txt
+*.ipynb_checkpoints
+*.cover
+htmlcov/
+.cache/
+.tox/
 .venv/
+venv/
+env/
 
-# Ruby (if any)
-*.gem
-*.rbc
-/.config
-/coverage/
-/InstalledFiles
-/pkg/
-/spec/reports/
-/spec/examples.txt
-/test/tmp/
-/test/version_tmp/
-/tmp/
+# === Node.js (24.4.0) ===
+node_modules/
+.npm/
+.pnpm/
+.yarn/
+.yarnrc.yml
+yarn.lock
+package-lock.json
+dist/
+build/
+*.tsbuildinfo
+.nyc_output/
+coverage/
 
-# Go (if any)
+# === Golang (1.24.5) ===
 *.exe
-*.exe~
-*.dll
-*.so
-*.dylib
 *.test
 *.out
+*.a
+vendor/
+bin/
+pkg/
+go.sum
 go.work
+go.work.sum
 
-# Rust (if any)
-/target/
+# === Rust (1.88.0) ===
+target/
 Cargo.lock
+*.rs.bk
 
-# Java (if any)
-*.class
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-hs_err_pid*
+# === Kubernetes (kubectl 1.33.2, K9s 0.50.7) ===
+.kube/
+.k9s/
+*.kubeconfig
 
-# Sensitive files (already excluded but good to have here)
-*.key
-*.pem
-*.p12
-*.pfx
-*.crt
-*.csr
-*.pem
-*.p12
-*.pfx
-*.crt
-*.csr
-*.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# === Helm (3.18.4) ===
+charts/
+*.tgz
+*.lock
+.tmp/
 
-# History files (security)
-.history
-.zsh_history
+# === Logs and Temp ===
+*.log
+*.log.*
+nohup.out
+*.pid
+*.sock
+*.tmp
+tmp/
+temp/
+*.out
+
+# === OS / Editor / Tool Specific ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# === Shell + Misc ===
+*.sh~
 .bash_history
-.fish_history
-.powershell_history
+.zsh_history
+*.rej
+*.patch
+*.diff
+*.orig
 
-# Octopus CLI config (contains API keys)
-octopus/
-
-# Backup files
-*.bak
-*.backup
-*.old
-
-# Stow temporary files
-# .stow-local-ignore~
-
-# Local overrides
-.local/
-local/
-
-# System specific
+# === Git / Merge Tools ===
 *.orig
 *.rej
+*.conflict
+*.merge_file
 
-# 🔒 Prevent sensitive/shell session files from being committed
-stowfiles/**/.zsh_history
-stowfiles/**/.zcompdump*
-stowfiles/**/.z
-stowfiles/**/netrwhist
-stowfiles/**/sessions/
-stowfiles/**/logs/
-stowfiles/**/undo/
-stowfiles/**/cache/
-stowfiles/**/tmp/
-stowfiles/**/temp/
-**/logs/*
+# === Neovim ===
+*.swp
+*.swo
+*.swn
+*.un~
+*.tmp
+*~
+.netrwhist
+view/
+Session.vim
 
-# ZSH plugin content (keep folder structure but exclude plugin files)
-stowfiles/**/plugins/*/*.zsh
-stowfiles/**/plugins/*/*.plugin.zsh
-stowfiles/**/plugins/*/*.sh
-stowfiles/**/plugins/*/README*
-stowfiles/**/plugins/*/LICENSE*
-stowfiles/**/plugins/*/.git/
-stowfiles/**/plugins/*/docs/
-stowfiles/**/plugins/*/test/
-stowfiles/**/plugins/*/tests/
+# === VS Code ===
+.vscode/
+*.code-workspace
+.history/
 
-# ZSH sessions (exclude completely)
-**/.zsh_sessions/
+# === Cursor IDE ===
+.cursor/
+cursor.json

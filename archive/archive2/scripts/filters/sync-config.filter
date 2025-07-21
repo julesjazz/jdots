@@ -1,0 +1,41 @@
+# Filter for rsync
+# ───── EXCLUDE sensitive & unwanted files FIRST ─────
+- */.zsh_history
+- */.zsh_sessions
+- */.zcompdump
+- */.z
+- */cache/
+- */logs/
+- */sockets/
+- */AppSupport/
+- *.backup
+- *.history
+- *.tmp
+- *.bak
+- *.lock
+- *.log
+- logs/*
+- .DS_Store
+- temp*
+
+# ───── INCLUDE desired paths ─────
++ bash/
++ bash/***
++ zsh/
++ zsh/.zshrc
++ zsh/plugins/
++ git/
++ starship/
++ nvim/
++ nvim/**
++ nushell/
++ powershell/
++ tldr/
++ tldr/config.toml
++ ghostty/
++ logs/
++ scripts/
++ scripts/*.sh
+
+# ───── Exclude everything else ─────
+- '*'
